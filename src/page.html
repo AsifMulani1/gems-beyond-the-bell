@@ -477,7 +477,7 @@
     var pursuits = [];
     D.SCHOOLS.forEach(function (s) {
       s.acts.forEach(function (a) {
-        var label = (D.SAME[a] || a).replace('Bower School: ', '');
+        var label = D.SAME[a] || a;
         if (pursuits.indexOf(label) === -1) pursuits.push(label);
       });
     });
@@ -491,7 +491,7 @@
       var acts = D.byCategory(c.key);
       var span = c.key === 'sport' ? ' cat--wide' : '';
       var body = '<div class="chips">' + acts.map(function (a) {
-        return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
+        return '<button type="button" class="chip" data-find="' + a + '">' + a + '</button>';
       }).join('') + '</div>';
       return '<article class="cat box' + span + '">' +
         '<span class="cat__icon">' + icon(c.key) + '</span>' +
@@ -543,7 +543,7 @@
           '<div class="s-card__body">' +
           '<span class="s-card__brand">' + s.brand + '</span><h3>' + s.city + '</h3>' +
           '<div class="chips">' + s.acts.map(function (a) {
-            return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
+            return '<button type="button" class="chip" data-find="' + a + '">' + a + '</button>';
           }).join('') + '</div>' +
           '<a class="pill pill--pop" href="#schools">View &amp; register</a>' +
           '</div></article>';

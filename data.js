@@ -121,18 +121,15 @@ window.BTB = (function () {
       tag: 'Think. Plan. Play.',
       lead: 'Children develop strategic thinking through progressive learning of tactics, strategy and game analysis.',
       modules: ['Board & Pieces', 'Openings', 'Tactics', 'Strategy', 'Game Analysis'] },
-    'Bower School: Financial Literacy': {
-      cat: 'life',
-      cover: 'Financial awareness, understanding money and making everyday decisions with confidence.',
-      diff: 'Building practical money sense and sound decision-making from an early age.' },
-    'Bower School: Entrepreneurship': {
-      cat: 'ent',
-      cover: 'Idea generation, problem-solving and turning ideas into action.',
-      diff: 'Bringing creativity and practical thinking together to build and test ideas.' },
-    'Bower School: Artificial Intelligence': {
-      cat: 'tech',
-      cover: 'AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
-      diff: 'Preparing children for a future shaped by technology through practical thinking and application.' }
+    /* One programme with three strands. GEMS counts the strands separately to
+       reach eight activities at Kochi; the name is a single brand and is always
+       written in full, so it is one entry here and sits in the three categories
+       its own strands cover. */
+    'Bower School of Entrepreneurship': {
+      cats: ['ent', 'life', 'tech'],
+      strands: ['Financial Literacy', 'Entrepreneurship', 'Artificial Intelligence'],
+      cover: 'Financial awareness, understanding money and making everyday decisions with confidence. Idea generation, problem-solving and turning ideas into action. AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
+      diff: 'Building practical money sense from an early age, bringing creativity and practical thinking together to build and test ideas, and preparing children for a future shaped by technology.' }
   };
 
   /* state: 'on' running now, 'soon' planned. Nothing here is unconfirmed: a
@@ -141,8 +138,7 @@ window.BTB = (function () {
   var SCHOOLS = [
     { city: 'Kochi', brand: 'GEMS Modern Academy', state: 'on',
       acts: ['Basketball', 'Football', 'Badminton', 'Chess', 'Trinity Programme',
-             'Bower School: Financial Literacy', 'Bower School: Entrepreneurship',
-             'Bower School: Artificial Intelligence'] },
+             'Bower School of Entrepreneurship'] },
     { city: 'Gurgaon', brand: 'GEMS Millennium School', state: 'on',
       acts: ['Cricket', 'Badminton', 'Soccer', 'Boxing', 'Swimming', 'Pickleball', 'Basket Ball'] },
     { city: 'Varanasi', brand: 'GEMS Millennium School', state: 'on',
@@ -203,7 +199,9 @@ window.BTB = (function () {
     SCHOOLS.forEach(function (s) {
       s.acts.forEach(function (a) {
         var meta = ACTIVITIES[a];
-        if (!meta || meta.cat !== key) return;
+        if (!meta) return;
+        var cats = meta.cats || [meta.cat];
+        if (cats.indexOf(key) === -1) return;
         var label = SAME[a] || a;
         if (!seen[label]) { seen[label] = true; out.push(label); }
       });

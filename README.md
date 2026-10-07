@@ -58,6 +58,13 @@ parent reads.
 - **Activity names are inconsistent at source**: Soccer at Gurgaon against
   Football everywhere else, and both Basket Ball and Basketball. The finder
   papers over this with `ALIASES`; GEMS should fix it in the data.
+- **Kochi reads as 6 activities here, not 8**: the Bower School of
+  Entrepreneurship is one brand and is always written in full, so it is a single
+  entry carrying three strands (financial literacy, entrepreneurship, artificial
+  intelligence) rather than three activities with the brand name repeated. GEMS
+  counted the strands separately to reach eight. It is the only activity with
+  more than one category, which is what keeps Innovation & Technology on the
+  page: nothing else in the network sits there.
 - **Still unanswered by any document**: grades and ages, days and timings, fees,
   and the registration route and deadlines. Those are campus-page content, and
   the campus pages cannot ship without them.
