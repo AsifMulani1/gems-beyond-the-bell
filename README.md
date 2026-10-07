@@ -6,6 +6,32 @@ code.
 
 **Live:** https://asifmulani1.github.io/gems-beyond-the-bell/
 
+## Going live on gemseducationindia.com
+
+The page is served as its own Cloudflare Worker on the route
+`gemseducationindia.com/beyond-the-bell*`, which is the same pattern the eleven
+campus sites use. Cloudflare matches the most specific route, so this wins over
+the main site's `/*` and the brand site is never touched.
+
+```sh
+python3 build.py --live                              # writes dist/
+npx wrangler deploy --config worker/wrangler.toml    # Gemsk12website@gmail.com
+```
+
+Then add the route in the Cloudflare dashboard, or fill in the zone and
+uncomment the routes block in `worker/wrangler.toml`.
+
+**Before it is useful**, paste the Web3Forms access key into `ENQUIRY_KEY` at the
+top of `src/data.js`. It needs its **own** key for admissiondesk@gemsedu.in, not
+a campus one: every campus key already in use is bound to that campus's form, so
+reusing one would file Beyond the Bell enquiries from every campus under a single
+campus. While the key is empty the form shows the campaign phone numbers rather
+than pretending to send, which is the campus sites' own fallback.
+
+The page carries no favicon of its own in production, so the browser falls back
+to the origin's `/favicon.ico` and it shares the site's icon like every other
+page. The review build keeps a bell mark so it is findable among open tabs.
+
 ## Running it
 
 ```sh

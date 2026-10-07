@@ -38,6 +38,13 @@ FAVICON = (
 
 
 def head(site: str, indexable: bool) -> str:
+    # On gemseducationindia.com the browser falls back to the origin's
+    # /favicon.ico, which the brand site already serves, so this page shares the
+    # site's icon rather than being the one page with a different one. The
+    # Worker only answers /beyond-the-bell*, so /favicon.ico falls through to
+    # the main site. The review copy keeps its own mark, since GitHub Pages
+    # serves no GEMS favicon and a blank tab is hard to find among many.
+    icon = "" if indexable else f'\n<link rel="icon" href="{FAVICON}">'
     robots = (
         '<meta name="robots" content="index, follow">'
         if indexable
@@ -56,7 +63,7 @@ def head(site: str, indexable: bool) -> str:
 <meta property="og:image" content="{site}/img/swim-lane.jpg">
 <meta property="og:url" content="{site}/">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="{FAVICON}">
+{icon}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap">

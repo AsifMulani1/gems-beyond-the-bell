@@ -9,6 +9,14 @@
  */
 
 window.BTB = (function () {
+  /* Web3Forms access key for the Beyond the Bell enquiry form. Same mechanism
+     and same inbox as the eleven campus sites, admissiondesk@gemsedu.in, but it
+     needs its OWN key: reusing a campus key would file every Beyond the Bell
+     enquiry, from every campus, under that one campus's form.
+     Empty means the form shows the campaign phone numbers instead of pretending
+     to send. Paste the key here and it goes live. */
+  var ENQUIRY_KEY = '';
+
   var CATEGORIES = [
     { key: 'sport', name: 'Sports',
       blurb: 'From a first lesson to competitive play, students can develop skills, confidence and a love for sport across the field, court, mat and water.' },
@@ -246,6 +254,7 @@ window.BTB = (function () {
   }
 
   return {
+    ENQUIRY_KEY: ENQUIRY_KEY,
     CATEGORIES: CATEGORIES,
     liveCategories: liveCategories,
     searchText: searchText,

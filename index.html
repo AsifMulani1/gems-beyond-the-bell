@@ -14,6 +14,7 @@
 <meta property="og:image" content="https://asifmulani1.github.io/gems-beyond-the-bell/img/swim-lane.jpg">
 <meta property="og:url" content="https://asifmulani1.github.io/gems-beyond-the-bell/">
 <meta name="twitter:card" content="summary_large_image">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%23102c53'/%3E%3Cpath d='M12 5a5 5 0 0 1 5 5c0 3.4 1.2 4.7 2 5.5H5c.8-.8 2-2.1 2-5.5a5 5 0 0 1 5-5Z' fill='none' stroke='%23fcd727' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M10.3 18a1.8 1.8 0 0 0 3.4 0' fill='none' stroke='%23fcd727' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -963,13 +964,11 @@
 
 
     /* ---------- enquiry ----------
-       Same mechanism the eleven campus sites already use: the browser posts to
-       Web3Forms, which emails the enquiry. No server and no database. The key
-       is a public form key scoped to one inbox, not a password. Until GEMS
-       issues one for the Beyond the Bell inbox, ENQUIRY_KEY stays empty and the
-       dialog shows the campaign phone numbers instead of failing silently,
-       which is the fallback the campus sites use for a campus with no key. */
-    var ENQUIRY_KEY = '';
+       The browser posts to Web3Forms, which emails the enquiry. No server and
+       no database, the same way the eleven campus sites already work. The key
+       lives in data.js; empty shows the campaign numbers rather than failing
+       silently, which is the campus sites' own fallback. */
+    var ENQUIRY_KEY = D.ENQUIRY_KEY || '';
     var CAMPAIGN_PHONES = [['83030 28336', '918303028336'], ['93355 21492', '919335521492']];
 
     var dlg = document.getElementById('enquiry');

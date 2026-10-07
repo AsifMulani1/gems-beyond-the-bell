@@ -774,13 +774,11 @@
 
 
     /* ---------- enquiry ----------
-       Same mechanism the eleven campus sites already use: the browser posts to
-       Web3Forms, which emails the enquiry. No server and no database. The key
-       is a public form key scoped to one inbox, not a password. Until GEMS
-       issues one for the Beyond the Bell inbox, ENQUIRY_KEY stays empty and the
-       dialog shows the campaign phone numbers instead of failing silently,
-       which is the fallback the campus sites use for a campus with no key. */
-    var ENQUIRY_KEY = '';
+       The browser posts to Web3Forms, which emails the enquiry. No server and
+       no database, the same way the eleven campus sites already work. The key
+       lives in data.js; empty shows the campaign numbers rather than failing
+       silently, which is the campus sites' own fallback. */
+    var ENQUIRY_KEY = D.ENQUIRY_KEY || '';
     var CAMPAIGN_PHONES = [['83030 28336', '918303028336'], ['93355 21492', '919335521492']];
 
     var dlg = document.getElementById('enquiry');
