@@ -119,6 +119,7 @@
   .eq__msg { grid-column: span 2; font-size: 14px; border-radius: 10px; padding: 12px 14px; }
   .eq__msg.ok { background: #e8f6ee; color: #1d6b43; }
   .eq__msg.bad { background: #fdecea; color: #a3301d; }
+  .eq__msg a { font-weight: 600; text-decoration: underline; color: inherit; }
   .eq__fallback { grid-column: span 2; background: var(--note-bg); border: 2px solid #eadcb0;
     border-radius: 12px; padding: 16px 18px; font-size: 14px; line-height: 1.65; color: var(--note); }
   .eq__fallback a { font-weight: 600; text-decoration: underline; }
@@ -780,7 +781,13 @@
        lives in data.js; empty shows the campaign numbers rather than failing
        silently, which is the campus sites' own fallback. */
     var ENQUIRY_KEY = D.ENQUIRY_KEY || '';
-    var CAMPAIGN_PHONES = [['83030 28336', '918303028336'], ['93355 21492', '919335521492']];
+    var CONTACT_PHONE = '+91 9240920000';
+    var CONTACT_TEL = '+919240920000';
+    var CONTACT_EMAIL = 'admissiondesk@gemsedu.in';
+    function contactHtml() {
+      return 'call <a href="tel:' + CONTACT_TEL + '">' + CONTACT_PHONE + '</a>' +
+        ' or email <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a>';
+    }
 
     var dlg = document.getElementById('enquiry');
     var eqForm = document.getElementById('eqForm');
@@ -814,9 +821,8 @@
       if (!ENQUIRY_KEY) {
         var box = document.createElement('div');
         box.className = 'eq__fallback';
-        box.innerHTML = 'The enquiry inbox is being set up. In the meantime please call ' +
-          CAMPAIGN_PHONES.map(function (t) { return '<a href="tel:+' + t[1] + '">' + t[0] + '</a>'; }).join(' or ') +
-          ', or email <a href="mailto:info@gemsedu.in">info@gemsedu.in</a>.';
+        box.innerHTML = 'The enquiry form is not connected yet. In the meantime please ' +
+          contactHtml() + '.';
         eqForm.insertBefore(box, eqForm.firstChild);
       }
       if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
@@ -838,10 +844,11 @@
       e.preventDefault();
       var old = eqForm.querySelector('.eq__msg');
       if (old) old.remove();
-      function say(kind, text) {
+      function say(kind, text, withContact) {
         var m = document.createElement('div');
         m.className = 'eq__msg ' + kind;
         m.textContent = text;
+        if (withContact) m.innerHTML = text + ' Please ' + contactHtml() + '.';
         eqForm.appendChild(m);
       }
       if (!document.getElementById('eqName').value.trim() || !document.getElementById('eqPhone').value.trim()) {
@@ -849,7 +856,7 @@
         return;
       }
       if (!ENQUIRY_KEY) {
-        say('bad', 'The enquiry inbox is not connected yet. Please call or email using the numbers above.');
+        say('bad', 'The enquiry form is not connected yet.', true);
         return;
       }
       var btn = document.getElementById('eqSend');
@@ -879,12 +886,12 @@
           eqForm.reset();
           say('ok', 'Thank you. The campus will come back to you about Beyond the Bell.');
         } else {
-          say('bad', 'That did not send. Please call or email us instead.');
+          say('bad', 'That did not send.', true);
         }
       }).catch(function () {
         btn.disabled = false;
         btn.textContent = 'Send enquiry';
-        say('bad', 'That did not send. Please call or email us instead.');
+        say('bad', 'That did not send.', true);
       });
     });
 
