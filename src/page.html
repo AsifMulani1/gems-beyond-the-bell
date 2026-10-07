@@ -145,9 +145,14 @@
   .mod h3 { font-size: 28px; letter-spacing: -.02em; }
   .mod p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
   .mod__chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
-  .mod__step { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; background: var(--pop); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 13px; }
-  .mod__step i { font-style: normal; font-size: 11px; opacity: .6; font-variant-numeric: tabular-nums; }
-  .mod__arrow { color: var(--mute); flex: none; }
+  .mod__step { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; background: var(--pop); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 16px 4px 4px; }
+  .mod__step i {
+    font-style: normal; flex: none;
+    width: 25px; height: 25px; border-radius: 50%;
+    background: var(--ink); color: var(--pop);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+  }
 
   /* ---------- coached ---------- */
   .coached { background: var(--ink); color: #fff; border-block: 3px solid var(--ink); }
@@ -263,7 +268,7 @@
     <span class="nav__mark">GEMS Education India</span>
     <div class="nav__links">
       <a href="#programme">The programme</a>
-      <a href="#categories">Something for every child</a>
+      <a href="#categories">Activities</a>
       <a href="#schools">Your school</a>
     </div>
     <a class="pill pill--pop" href="#schools">Find it at your school</a>
@@ -504,8 +509,7 @@
     document.getElementById('mods').innerHTML = withModules.map(function (name) {
       var a = D.ACTIVITIES[name];
       var chain = a.modules.map(function (m, i) {
-        return (i ? '<svg class="mod__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>' : '') +
-          '<span class="mod__step"><i>' + (i + 1) + '</i>' + m + '</span>';
+        return '<span class="mod__step"><i>' + (i + 1) + '</i>' + m + '</span>';
       }).join('');
       return '<article class="mod box">' +
         (a.tag ? '<span class="mod__tag">' + a.tag + '</span>' : '') +

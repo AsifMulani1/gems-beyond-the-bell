@@ -108,12 +108,14 @@ window.BTB = (function () {
       cat: 'arts',
       cover: 'Rhythm, listening, voice and instrument basics, practice and performance.',
       diff: 'Developing musicality, confidence, listening and creative expression.' },
+    /* No numbered modules here on purpose. GEMS presents a progression for four
+       activities only: Football, Skating, Chess and Dance. Trinity's five parts
+       come from the Kochi activity table, where they are listed as what the
+       programme covers, not as an order to work through. They stay in `cover`. */
     'Trinity Programme': {
       cat: 'arts',
       cover: 'Dance and movement, drama and role play, voice and expression, storytelling and performance.',
-      diff: 'A structured performing arts programme where children develop creativity, expression, confidence and communication through dance and drama.',
-      lead: 'A structured performing arts programme in dance and drama.',
-      modules: ['Dance & Movement', 'Drama & Role Play', 'Voice & Expression', 'Storytelling', 'Performance'] },
+      diff: 'A structured performing arts programme where children develop creativity, expression, confidence and communication through dance and drama.' },
     'Chess': {
       cat: 'life',
       cover: 'Board and pieces, opening principles, tactics, strategy and game analysis.',
