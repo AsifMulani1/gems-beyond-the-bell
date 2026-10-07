@@ -137,6 +137,8 @@
   .cat__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--pop); color: var(--ink); display: flex; align-items: center; justify-content: center; }
   .cat h3 { font-size: 26px; line-height: 1.12; letter-spacing: -.02em; }
   .cat p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); flex-grow: 1; }
+  .cat__strand { flex-grow: 0 !important; font-size: 14px !important; border-top: 2px solid #eceef3; padding-top: 12px; }
+  .cat__strand b { font-family: var(--display); color: var(--ink); font-weight: 600; }
 
   /* ---------- modules ---------- */
   .mods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
@@ -288,7 +290,7 @@
       </div>
       <h1>Their hour.<br>Their space.<br>Their <em>story</em>.</h1>
       <p class="hero__kicker">Because what happens after the bell matters too.</p>
-      <p class="hero__lead">GEMS Beyond the Bell gives children the space to explore their interests, discover new passions and build skills that stay with them beyond the classroom. From sport and performing arts to creativity, innovation, technology, life skills and entrepreneurship, every school brings its own opportunities to life.</p>
+      <p class="hero__lead">GEMS Beyond the Bell gives children the space to explore their interests, discover new passions and build skills that stay with them beyond the classroom. From sports and performing arts to creativity, innovation, technology, life skills and entrepreneurship, every school brings its own opportunities to life.</p>
       <p class="hero__lead" style="color:var(--ink);font-weight:500">One programme across GEMS India. Curated school by school.</p>
       <div class="hero__cta">
         <a class="pill pill--pop" href="#schools">Find it at your school
@@ -352,7 +354,7 @@
 <section class="sec wrap" id="categories" style="padding-top:0">
   <div class="sec__head">
     <h2>Something for every child</h2>
-    <p class="sec__note">From sport and performing arts to creativity, technology, innovation, life skills and entrepreneurship, Beyond the Bell gives children more opportunities to explore what interests them, discover new passions and grow beyond the classroom.</p>
+    <p class="sec__note">From sports and performing arts to creativity, technology, innovation, life skills and entrepreneurship, Beyond the Bell gives children more opportunities to explore what interests them, discover new passions and grow beyond the classroom.</p>
   </div>
   <div class="cats" id="cats"></div>
 </section>
@@ -468,7 +470,7 @@
     var soon = D.SCHOOLS.filter(function (s) { return s.state === 'soon'; }).length;
     document.getElementById('stats').innerHTML = [
       [String(D.distinctPursuits()), 'distinct pursuits across the network'],
-      [String(D.liveCategories().length), 'categories, from sport to enterprise'],
+      [String(D.liveCategories().length), 'categories, from sports to enterprise'],
       [String(running), 'campuses running it today'],
       [String(soon), 'more opening soon']
     ].map(function (s, i) {
@@ -501,10 +503,19 @@
       var body = '<div class="chips">' + acts.map(function (a) {
         return '<button type="button" class="chip" data-find="' + a + '">' + a + '</button>';
       }).join('') + '</div>';
+      /* One programme reads differently under each of its categories, and GEMS
+         wrote the copy for each, so the card shows the strand it belongs to. */
+      var strand = '';
+      acts.forEach(function (a) {
+        var meta = D.ACTIVITIES[a];
+        if (meta && meta.byCat && meta.byCat[c.key]) {
+          strand = '<p class="cat__strand"><b>' + a + '</b> ' + meta.byCat[c.key].cover + '</p>';
+        }
+      });
       return '<article class="cat box' + span + '">' +
         '<span class="cat__icon">' + icon(c.key) + '</span>' +
         '<h3>' + c.name + '</h3>' +
-        '<p>' + c.blurb + '</p>' + body + '</article>';
+        '<p>' + c.blurb + '</p>' + body + strand + '</article>';
     }).join('');
 
     /* ---------- modules ---------- */

@@ -62,10 +62,6 @@ window.BTB = (function () {
       cat: 'sport',
       cover: 'Dribbling, passing, shooting, defence and game strategy.',
       diff: 'Building coordination, agility, teamwork and game awareness.' },
-    'Basket Ball': {
-      cat: 'sport',
-      cover: 'Dribbling, passing, shooting, defence and game strategy.',
-      diff: 'Children build coordination, agility and game awareness through progressive drills, teamwork and game situations.' },
     'Martial Arts': {
       cat: 'sport',
       cover: 'Stance, movement, basic techniques, forms, fitness and safety.',
@@ -129,9 +125,18 @@ window.BTB = (function () {
        its own strands cover. */
     'Bower School of Entrepreneurship': {
       cats: ['ent', 'life', 'tech'],
-      strands: ['Financial Literacy', 'Entrepreneurship', 'Artificial Intelligence'],
+      /* GEMS supplies different content for this one programme depending on the
+         category it is read under, so each category shows its own strand. */
+      byCat: {
+        life: { cover: 'Financial awareness, understanding money and making everyday decisions with confidence.',
+                diff: 'Building practical money sense and sound decision-making from an early age.' },
+        ent:  { cover: 'Idea generation, problem-solving and turning ideas into action.',
+                diff: 'Bringing creativity and practical thinking together to build and test ideas.' },
+        tech: { cover: 'AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
+                diff: 'Preparing children for a future shaped by technology through practical thinking and application.' }
+      },
       cover: 'Financial awareness, understanding money and making everyday decisions with confidence. Idea generation, problem-solving and turning ideas into action. AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
-      diff: 'Building practical money sense from an early age, bringing creativity and practical thinking together to build and test ideas, and preparing children for a future shaped by technology.' }
+      diff: 'Building practical money sense and sound decision-making from an early age, bringing creativity and practical thinking together to build and test ideas, and preparing children for a future shaped by technology.' }
   };
 
   /* state: 'on' running now, 'soon' planned. Nothing here is unconfirmed: a
@@ -142,7 +147,7 @@ window.BTB = (function () {
       acts: ['Basketball', 'Football', 'Badminton', 'Chess', 'Trinity Programme',
              'Bower School of Entrepreneurship'] },
     { city: 'Gurgaon', brand: 'GEMS Millennium School', state: 'on',
-      acts: ['Cricket', 'Badminton', 'Soccer', 'Boxing', 'Swimming', 'Pickleball', 'Basket Ball'] },
+      acts: ['Cricket', 'Badminton', 'Soccer', 'Boxing', 'Swimming', 'Pickleball', 'Basketball'] },
     { city: 'Varanasi', brand: 'GEMS Millennium School', state: 'on',
       acts: ['Cricket', 'Basketball', 'Swimming'] },
     { city: 'Indirapuram', brand: 'GEMS Millennium School', state: 'soon',
@@ -182,7 +187,7 @@ window.BTB = (function () {
   ];
 
   /* The same sport under two names counts once. */
-  var SAME = { 'Soccer': 'Football', 'Basket Ball': 'Basketball', 'Dance and Aerobics': 'Dance' };
+  var SAME = { 'Soccer': 'Football', 'Dance and Aerobics': 'Dance' };
 
   function distinctPursuits() {
     var seen = {};
