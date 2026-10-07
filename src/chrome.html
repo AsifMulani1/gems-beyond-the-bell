@@ -1,0 +1,172 @@
+<!-- The gemseducationindia.com header and footer, rebuilt self-contained.
+
+     The live site is Tailwind with hashed asset names, so linking its
+     stylesheet would break the moment the brand site is rebuilt and the hash
+     changes. These are the same elements written as plain CSS instead: same
+     tokens (#202f60 navy, #00aae7 blue, Jost), same 84px bar, same dropdowns,
+     same footer columns. It will drift if GEMS redesigns the header, which is
+     the known cost of serving this page as its own Worker rather than as a
+     route inside the brand site's own codebase. -->
+<style id="chrome-css">
+  .gx { --navy: #202f60; --blue: #00aae7; --pale: #d1ecf7; --body: #3d3d3d; --line: #e0eef7; }
+  .gx, .gx * { box-sizing: border-box; }
+  .gx a { text-decoration: none; color: inherit; }
+
+  /* ---- header ---- */
+  .gx-hd {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 60;
+    background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.04);
+    font-family: "Jost", system-ui, sans-serif;
+  }
+  .gx-hd__in {
+    max-width: 1280px; margin: 0 auto; padding: 8px 20px;
+    min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .gx-logo img { width: 150px; height: auto; display: block; }
+  .gx-nav { display: flex; align-items: center; gap: 28px;
+    font-size: 14px; font-weight: 600; letter-spacing: .03em; color: var(--navy); }
+  .gx-nav > * { position: relative; }
+  .gx-nav button, .gx-nav a { font: inherit; color: inherit; background: none; border: 0; padding: 8px 0; cursor: pointer; }
+  .gx-nav button:hover, .gx-nav a:hover { color: var(--blue); }
+  .gx-nav .on { color: var(--blue); }
+  .gx-dd {
+    position: absolute; left: 0; top: 100%; padding-top: 12px; min-width: 280px;
+    opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s;
+  }
+  .gx-nav > *:hover .gx-dd, .gx-nav > *:focus-within .gx-dd { opacity: 1; transform: none; pointer-events: auto; }
+  .gx-dd__p { background: #fff; border-radius: 12px; padding: 12px 0; box-shadow: 0 8px 32px rgba(32,47,96,.14); }
+  .gx-dd a { display: block; padding: 9px 20px; font-size: 14px; font-weight: 500; white-space: nowrap; }
+  .gx-dd a:hover { background: #f4fafd; color: var(--blue); }
+  .gx-cta {
+    background: var(--blue); color: #fff !important; border-radius: 999px;
+    padding: 13px 24px; font-size: 12.5px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; white-space: nowrap; transition: .16s;
+  }
+  .gx-cta:hover { background: var(--navy); }
+  .gx-burger { display: none; background: none; border: 0; padding: 10px; cursor: pointer; color: var(--navy); }
+  .gx-mob { display: none; border-top: 1px solid var(--line); background: #fff;
+    font-family: "Jost", system-ui, sans-serif; padding: 8px 20px 18px; }
+  .gx-mob a { display: block; padding: 11px 0; font-size: 15px; font-weight: 600; color: var(--navy); }
+  .gx-mob .sub { padding-left: 14px; font-weight: 500; font-size: 14px; opacity: .85; }
+  .gx-mob .lbl { display: block; padding: 12px 0 4px; font-size: 11px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: #9aa4b4; }
+  .gx-mob[data-open="true"] { display: block; }
+
+  @media (max-width: 1080px) {
+    .gx-nav, .gx-hd .gx-cta { display: none; }
+    .gx-burger { display: block; }
+    .gx-hd__in { min-height: 72px; }
+    .gx-logo img { width: 120px; }
+  }
+
+  /* ---- footer ---- */
+  .gx-ft { background: var(--navy); color: rgba(255,255,255,.82);
+    font-family: "Jost", system-ui, sans-serif; font-size: 14.5px; }
+  .gx-ft__in { max-width: 1280px; margin: 0 auto; padding: 64px 20px 28px; }
+  .gx-ft__cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 40px; }
+  .gx-ft h4 { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: #fff; margin: 0 0 16px; }
+  .gx-ft a { display: block; padding: 5px 0; color: rgba(255,255,255,.82); }
+  .gx-ft a:hover { color: var(--blue); }
+  .gx-ft__logo { width: 170px; height: auto; display: block; margin-bottom: 18px;
+    background: #fff; border-radius: 8px; padding: 10px 12px; }
+  .gx-ft__note { font-size: 13.5px; line-height: 1.65; color: rgba(255,255,255,.66); max-width: 34ch; }
+  .gx-ft__base { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.16);
+    display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: space-between;
+    font-size: 13px; color: rgba(255,255,255,.6); }
+  .gx-ft__base nav { display: flex; flex-wrap: wrap; gap: 20px; }
+  .gx-ft__base a { padding: 0; }
+  @media (max-width: 900px) { .gx-ft__cols { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
+  @media (max-width: 560px) { .gx-ft__cols { grid-template-columns: 1fr; } }
+</style>
+
+<header class="gx gx-hd">
+  <div class="gx-hd__in">
+    <a class="gx-logo" href="/" aria-label="GEMS Education India">
+      <img src="img/gems-logo.png" alt="GEMS Education" width="1920" height="798">
+    </a>
+    <nav class="gx-nav">
+      <div>
+        <button type="button" aria-haspopup="true">About Us</button>
+        <div class="gx-dd"><div class="gx-dd__p">
+          <a href="/about-gems-education">About GEMS Education</a>
+          <a href="/leadership-team">Leadership Team</a>
+          <a href="/life-at-gems-education">Life at GEMS Education</a>
+        </div></div>
+      </div>
+      <div>
+        <button type="button" aria-haspopup="true">Our Schools</button>
+        <div class="gx-dd"><div class="gx-dd__p">
+          <a href="/millennium-school-gurugram">GEMS Millennium School, Gurugram</a>
+          <a href="/millennium-school-indirapuram">GEMS Millennium School, Indirapuram</a>
+          <a href="/millennium-school-kochi">GEMS Millennium School, Kochi</a>
+          <a href="/millennium-school-vikhroli">GEMS Millennium School, Vikhroli, Mumbai</a>
+          <a href="/millennium-school-kalyan">GEMS Millennium School, Kalyan</a>
+          <a href="/millennium-school-raipur">GEMS Millennium School, Raipur</a>
+          <a href="/millennium-school-varanasi">GEMS Millennium School, Varanasi</a>
+          <a href="/modern-academy-kochi">GEMS Modern Academy, Kochi</a>
+          <a href="/modern-academy-coimbatore">GEMS Modern Academy, Coimbatore</a>
+          <a href="/school-of-excellence-lucknow">GEMS School of Excellence, Lucknow (SCR)</a>
+          <a href="/school-of-excellence-jodhpur">GEMS School of Excellence, Jodhpur</a>
+        </div></div>
+      </div>
+      <div><a class="on" href="/beyond-the-bell">Beyond the Bell</a></div>
+      <div><a href="/we-are-gems">We Are GEMS</a></div>
+      <div><a href="/campus-connect">Campus Connect</a></div>
+      <div><a href="/contact-us">Contact</a></div>
+    </nav>
+    <a class="gx-cta" href="/admission">Admission Waitlist</a>
+    <button class="gx-burger" id="gxBurger" aria-label="Menu" aria-expanded="false" aria-controls="gxMob">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav class="gx-mob" id="gxMob" data-open="false">
+    <span class="lbl">About Us</span>
+    <a class="sub" href="/about-gems-education">About GEMS Education</a>
+    <a class="sub" href="/leadership-team">Leadership Team</a>
+    <a class="sub" href="/life-at-gems-education">Life at GEMS Education</a>
+    <a href="/#schools-list">Our Schools</a>
+    <a href="/beyond-the-bell">Beyond the Bell</a>
+    <a href="/we-are-gems">We Are GEMS</a>
+    <a href="/campus-connect">Campus Connect</a>
+    <a href="/contact-us">Contact</a>
+    <a href="/admission">Admission Waitlist</a>
+  </nav>
+</header>
+
+<footer class="gx gx-ft">
+  <div class="gx-ft__in">
+    <div class="gx-ft__cols">
+      <div>
+        <img class="gx-ft__logo" src="img/gems-logo.png" alt="GEMS Education" width="1920" height="798">
+        <p class="gx-ft__note">ADGE Educational Development Foundation. Schools across India, part of the wider GEMS Education network.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="/about-gems-education">About Us</a>
+        <a href="/beyond-the-bell">Beyond the Bell</a>
+        <a href="/campus-connect">Campus Connect</a>
+        <a href="/hiring">Hiring</a>
+      </div>
+      <div>
+        <h4>Admissions</h4>
+        <a href="/admission">Admissions</a>
+        <a href="/contact-us">Contact</a>
+        <a href="https://www.littlegemskochi.in/">Little GEMS, Kochi</a>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <a href="mailto:info@gemsedu.in">info@gemsedu.in</a>
+        <a href="tel:+919870108853">+91 9870108853</a>
+      </div>
+    </div>
+    <div class="gx-ft__base">
+      <span>&copy; 2026 GEMS Education India. All rights reserved.</span>
+      <nav>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-use">Terms of Use</a>
+        <a href="/website-disclaimer">Disclaimer</a>
+      </nav>
+    </div>
+  </div>
+</footer>

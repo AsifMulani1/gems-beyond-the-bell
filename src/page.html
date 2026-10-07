@@ -1,5 +1,6 @@
 <title>Beyond the Bell</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<!--SITE_CSS-->
 <style>
   :root {
     --ink: #102c53;
@@ -39,6 +40,7 @@
 
   .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: 20px; }
   [id] { scroll-margin-top: 150px; }
+  .nav, .foot { display: none; }
 
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
 
@@ -73,6 +75,54 @@
   .nav__links a:hover { color: var(--pop); }
   .nav .pill { min-height: 42px; padding: 0 20px; font-size: 15px; box-shadow: 3px 3px 0 rgba(255,255,255,.35); }
   .nav .pill:hover { box-shadow: 5px 5px 0 rgba(255,255,255,.35); }
+
+  /* ---------- sub-nav, sitting under the site header ---------- */
+  .subnav {
+    position: sticky; top: calc(84px + env(safe-area-inset-top, 0px)); z-index: 50;
+    background: var(--ink); border-bottom: 2px solid rgba(255,255,255,.14);
+  }
+  .subnav__in { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; padding-block: 11px; }
+  .subnav__mark { font-family: var(--display); font-weight: 600; font-size: 15px; color: var(--pop); margin-right: auto; }
+  .subnav a { font-size: 14px; color: rgba(255,255,255,.76); }
+  .subnav a:hover { color: var(--pop); }
+  .subnav .pill { min-height: 38px; padding: 0 18px; font-size: 14px; box-shadow: 3px 3px 0 rgba(255,255,255,.3); }
+  .subnav .pill:hover { box-shadow: 5px 5px 0 rgba(255,255,255,.3); }
+  @media (max-width: 1080px) { .subnav { top: calc(72px + env(safe-area-inset-top, 0px)); } }
+  @media (max-width: 700px) { .subnav__links { display: none; } }
+
+  /* ---------- enquiry dialog ---------- */
+  .eq::backdrop { background: rgba(16,44,83,.55); }
+  .eq {
+    width: min(560px, calc(100vw - 32px)); padding: 0; border: 3px solid var(--ink);
+    border-radius: 24px; overflow: hidden; background: var(--card); color: var(--ink);
+    max-height: calc(100vh - 48px);
+    box-shadow: var(--shadow); font-family: var(--body);
+  }
+  .eq__hd { background: var(--ink); color: #fff; padding: 20px 24px; display: flex; align-items: flex-start; gap: 14px; }
+  .eq__hd h2 { font-size: 22px; color: #fff; }
+  .eq__hd p { margin: 5px 0 0; font-size: 13.5px; color: rgba(255,255,255,.72); }
+  .eq__x { margin-left: auto; background: none; border: 0; color: #fff; cursor: pointer; padding: 4px; }
+  .eq__bd { padding: 22px 24px 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  /* Grid items default to min-width:auto, so an input's intrinsic width stops
+     the column shrinking and the dialog overflows its own border. */
+  .eq__bd label { display: flex; flex-direction: column; gap: 5px; font-size: 13px; font-weight: 600; min-width: 0; }
+  .eq__bd input, .eq__bd select, .eq__bd textarea { width: 100%; min-width: 0; }
+  .eq__bd .wide { grid-column: span 2; }
+  .eq__bd input, .eq__bd select, .eq__bd textarea {
+    font: inherit; font-size: 15px; font-weight: 400; color: var(--ink);
+    border: 2px solid #d9dde5; border-radius: 10px; padding: 11px 12px; min-height: 46px; background: #fff;
+  }
+  .eq__bd textarea { min-height: 76px; resize: vertical; }
+  .eq__bd input:focus, .eq__bd select:focus, .eq__bd textarea:focus { outline: 0; border-color: var(--ink); }
+  .eq__foot { grid-column: span 2; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .eq__note { font-size: 12.5px; color: var(--ink-soft); flex: 1 1 180px; }
+  .eq__msg { grid-column: span 2; font-size: 14px; border-radius: 10px; padding: 12px 14px; }
+  .eq__msg.ok { background: #e8f6ee; color: #1d6b43; }
+  .eq__msg.bad { background: #fdecea; color: #a3301d; }
+  .eq__fallback { grid-column: span 2; background: var(--note-bg); border: 2px solid #eadcb0;
+    border-radius: 12px; padding: 16px 18px; font-size: 14px; line-height: 1.65; color: var(--note); }
+  .eq__fallback a { font-weight: 600; text-decoration: underline; }
+  @media (max-width: 560px) { .eq__bd { grid-template-columns: 1fr; } .eq__bd .wide, .eq__foot, .eq__msg, .eq__fallback { grid-column: span 1; } }
 
   /* ---------- hero ---------- */
   .hero { position: relative; overflow: hidden; padding-block: 52px 68px; }
@@ -206,7 +256,7 @@
   .s-row__name { font-family: var(--display); font-weight: 600; font-size: 20px; min-width: 190px; }
   .s-row__brand { font-size: 12px; color: var(--mute); min-width: 150px; }
   .s-row__note { flex: 1 1 230px; font-size: 14px; color: var(--ink-soft); }
-  .s-row__go { font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; min-height: 44px; }
+  .s-row__go { font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; min-height: 44px; background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
   .s-row__go:hover { color: #0b6fa8; }
 
   .status { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
@@ -268,17 +318,19 @@
   }
 </style>
 
-<nav class="nav">
-  <div class="wrap nav__in">
-    <span class="nav__mark">GEMS Education India</span>
-    <div class="nav__links">
+<!--SITE_HEADER-->
+<div class="subnav">
+  <div class="wrap subnav__in">
+    <span class="subnav__mark">Beyond the Bell</span>
+    <span class="subnav__links" style="display:flex;flex-wrap:wrap;gap:22px">
       <a href="#programme">The programme</a>
       <a href="#categories">Activities</a>
+      <a href="#modules">Modules</a>
       <a href="#schools">Your school</a>
-    </div>
-    <a class="pill pill--pop" href="#schools">Find it at your school</a>
+    </span>
+    <button type="button" class="pill pill--pop" data-enquire>Register your interest</button>
   </div>
-</nav>
+</div>
 
 <header class="hero">
   <div class="hero__blob"></div>
@@ -429,18 +481,49 @@
       <p>Tell us where you are and what your child is drawn to. The GEMS India team will point you to the right campus and the right person.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:14px">
-      <a class="pill pill--ink" href="#schools">Register your interest</a>
+      <button type="button" class="pill pill--ink" data-enquire>Register your interest</button>
       <a class="pill" href="#schools">Browse the schools</a>
     </div>
   </div>
 </section>
 
-<footer class="foot">
-  <div class="wrap foot__in">
-    <span>GEMS Education India · Student Life</span>
-    <span>/student-life/beyond-the-bell</span>
-  </div>
-</footer>
+<!--SITE_FOOTER-->
+
+<dialog class="eq" id="enquiry">
+  <form method="dialog" class="eq__hd">
+    <div>
+      <h2 id="eqTitle">Register your interest</h2>
+      <p id="eqSub">Tell us which campus and what your child is drawn to.</p>
+    </div>
+    <button class="eq__x" value="close" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </form>
+  <form class="eq__bd" id="eqForm" novalidate>
+    <label class="wide">Parent name
+      <input id="eqName" name="name" type="text" autocomplete="name" required>
+    </label>
+    <label>Mobile
+      <input id="eqPhone" name="phone" type="tel" autocomplete="tel" required>
+    </label>
+    <label>Email
+      <input id="eqEmail" name="email" type="email" autocomplete="email">
+    </label>
+    <label>Campus
+      <select id="eqCampus" name="campus"></select>
+    </label>
+    <label>Activity
+      <select id="eqActivity" name="activity"></select>
+    </label>
+    <label class="wide">Anything else
+      <textarea id="eqMessage" name="message" rows="2"></textarea>
+    </label>
+    <div class="eq__foot">
+      <button type="submit" class="pill pill--pop" id="eqSend">Send enquiry</button>
+      <span class="eq__note">We use this only to reply about Beyond the Bell.</span>
+    </div>
+  </form>
+</dialog>
 
 <script src="data.js"></script>
 <script>
@@ -535,7 +618,13 @@
     var input = document.getElementById('findSchool');
 
     function go(s) {
-      return '<a class="s-row__go" href="#schools">' + (s.state === 'on' ? 'View &amp; register' : 'Register interest') + ' ' + ARROW + '</a>';
+      var live = s.state === 'on';
+      return '<button type="button" class="s-row__go" data-enquire data-campus="' + s.city + '"' +
+        ' data-title="' + (live ? 'Register for ' + s.city : 'Register your interest in ' + s.city) + '"' +
+        ' data-sub="' + (live
+          ? 'Beyond the Bell is running here. Tell us which activity and the campus will confirm times and fees.'
+          : 'Beyond the Bell is opening here. Register and the campus will come back to you.') +
+        '">' + (live ? 'View &amp; register' : 'Register interest') + ' ' + ARROW + '</button>';
     }
     function head(dot, text) {
       return '<div class="grouphead"><i class="' + dot + '"></i><h3>' + text + '</h3><span class="rule"></span></div>';
@@ -561,7 +650,9 @@
           '<div class="chips">' + s.acts.map(function (a) {
             return '<button type="button" class="chip" data-find="' + a + '">' + a + '</button>';
           }).join('') + '</div>' +
-          '<a class="pill pill--pop" href="#schools">View &amp; register</a>' +
+          '<button type="button" class="pill pill--pop" data-enquire data-campus="' + s.city + '"' +
+          ' data-title="Register for ' + s.city + '"' +
+          ' data-sub="Beyond the Bell is running here. Tell us which activity and the campus will confirm times and fees.">View &amp; register</button>' +
           '</div></article>';
       }).join('') + '</div>';
 
@@ -615,7 +706,7 @@
       if (!hits.length) {
         elResults.innerHTML = '<div class="res__empty box"><h3>No GEMS campus matches that yet</h3>' +
           '<p>The programme is still opening across India. Tell us where you are and what your child is drawn to, and the GEMS India team will point you to the closest campus.</p>' +
-          '<a class="pill pill--pop" href="#schools">Register your interest</a></div>';
+          '<button type="button" class="pill pill--pop" data-enquire>Register your interest</button></div>';
         return;
       }
 
@@ -680,6 +771,133 @@
       update();
       document.getElementById('schools').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+
+    /* ---------- enquiry ----------
+       Same mechanism the eleven campus sites already use: the browser posts to
+       Web3Forms, which emails the enquiry. No server and no database. The key
+       is a public form key scoped to one inbox, not a password. Until GEMS
+       issues one for the Beyond the Bell inbox, ENQUIRY_KEY stays empty and the
+       dialog shows the campaign phone numbers instead of failing silently,
+       which is the fallback the campus sites use for a campus with no key. */
+    var ENQUIRY_KEY = '';
+    var CAMPAIGN_PHONES = [['83030 28336', '918303028336'], ['93355 21492', '919335521492']];
+
+    var dlg = document.getElementById('enquiry');
+    var eqForm = document.getElementById('eqForm');
+    var eqCampus = document.getElementById('eqCampus');
+    var eqActivity = document.getElementById('eqActivity');
+
+    eqCampus.innerHTML = '<option value="">Not sure yet</option>' + D.SCHOOLS.map(function (s) {
+      return '<option value="' + s.city + '">' + s.city + ', ' + s.brand.replace('GEMS ', '') +
+        (s.state === 'on' ? '' : ' (opening soon)') + '</option>';
+    }).join('');
+
+    function fillActivities(city) {
+      var school = D.SCHOOLS.filter(function (s) { return s.city === city; })[0];
+      var list = school && school.acts.length ? school.acts
+        : Object.keys(D.ACTIVITIES).filter(function (k) { return k !== 'Soccer'; });
+      eqActivity.innerHTML = '<option value="">Not sure yet</option>' +
+        list.map(function (a) { return '<option value="' + a + '">' + a + '</option>'; }).join('');
+    }
+    eqCampus.addEventListener('change', function () { fillActivities(eqCampus.value); });
+    fillActivities('');
+
+    function openEnquiry(opts) {
+      opts = opts || {};
+      document.getElementById('eqTitle').textContent = opts.title || 'Register your interest';
+      document.getElementById('eqSub').textContent = opts.sub || 'Tell us which campus and what your child is drawn to.';
+      eqCampus.value = opts.campus || '';
+      fillActivities(eqCampus.value);
+      if (opts.activity) eqActivity.value = opts.activity;
+      var old = eqForm.querySelector('.eq__msg, .eq__fallback');
+      if (old) old.remove();
+      if (!ENQUIRY_KEY) {
+        var box = document.createElement('div');
+        box.className = 'eq__fallback';
+        box.innerHTML = 'The enquiry inbox is being set up. In the meantime please call ' +
+          CAMPAIGN_PHONES.map(function (t) { return '<a href="tel:+' + t[1] + '">' + t[0] + '</a>'; }).join(' or ') +
+          ', or email <a href="mailto:info@gemsedu.in">info@gemsedu.in</a>.';
+        eqForm.insertBefore(box, eqForm.firstChild);
+      }
+      if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    }
+
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest ? e.target.closest('[data-enquire]') : null;
+      if (!t) return;
+      e.preventDefault();
+      openEnquiry({
+        campus: t.getAttribute('data-campus') || '',
+        activity: t.getAttribute('data-activity') || '',
+        title: t.getAttribute('data-title') || 'Register your interest',
+        sub: t.getAttribute('data-sub') || 'Tell us which campus and what your child is drawn to.'
+      });
+    });
+
+    eqForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var old = eqForm.querySelector('.eq__msg');
+      if (old) old.remove();
+      function say(kind, text) {
+        var m = document.createElement('div');
+        m.className = 'eq__msg ' + kind;
+        m.textContent = text;
+        eqForm.appendChild(m);
+      }
+      if (!document.getElementById('eqName').value.trim() || !document.getElementById('eqPhone').value.trim()) {
+        say('bad', 'Please add a name and a mobile number so the campus can reply.');
+        return;
+      }
+      if (!ENQUIRY_KEY) {
+        say('bad', 'The enquiry inbox is not connected yet. Please call or email using the numbers above.');
+        return;
+      }
+      var btn = document.getElementById('eqSend');
+      btn.disabled = true;
+      btn.textContent = 'Sending';
+      var body = {
+        access_key: ENQUIRY_KEY,
+        subject: 'Beyond the Bell enquiry: ' + (eqCampus.value || 'campus not chosen'),
+        from_name: 'GEMS Beyond the Bell',
+        name: document.getElementById('eqName').value,
+        phone: document.getElementById('eqPhone').value,
+        email: document.getElementById('eqEmail').value,
+        campus: eqCampus.value || 'Not sure yet',
+        activity: eqActivity.value || 'Not sure yet',
+        message: document.getElementById('eqMessage').value,
+        page: location.pathname
+      };
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(body)
+      }).then(function (r) { return r.json(); }).then(function (r) {
+        btn.disabled = false;
+        btn.textContent = 'Send enquiry';
+        if (r && r.success) {
+          eqForm.reset();
+          say('ok', 'Thank you. The campus will come back to you about Beyond the Bell.');
+        } else {
+          say('bad', 'That did not send. Please call or email us instead.');
+        }
+      }).catch(function () {
+        btn.disabled = false;
+        btn.textContent = 'Send enquiry';
+        say('bad', 'That did not send. Please call or email us instead.');
+      });
+    });
+
+    /* The site header's mobile menu. */
+    var burger = document.getElementById('gxBurger');
+    var mob = document.getElementById('gxMob');
+    if (burger && mob) {
+      burger.addEventListener('click', function () {
+        var open = mob.getAttribute('data-open') === 'true';
+        mob.setAttribute('data-open', String(!open));
+        burger.setAttribute('aria-expanded', String(!open));
+      });
+    }
 
     renderDefault();
   })();

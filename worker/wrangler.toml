@@ -1,0 +1,21 @@
+# Beyond the Bell, served at gemseducationindia.com/beyond-the-bell
+#
+# The same pattern the eleven campus sites use: one Worker, one route.
+# Cloudflare matches the most specific route, so this wins over the main
+# site's gemseducationindia.com/* without the brand site changing at all.
+#
+#   npx wrangler deploy --config worker/wrangler.toml
+#
+# Then add the route in the dashboard, or uncomment the routes block below
+# once the zone id is filled in.
+
+name = "gems-beyond-the-bell"
+compatibility_date = "2026-10-07"
+
+[assets]
+directory = "../dist"
+not_found_handling = "single-page-application"
+
+# [[routes]]
+# pattern = "gemseducationindia.com/beyond-the-bell*"
+# zone_name = "gemseducationindia.com"
