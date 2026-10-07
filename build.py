@@ -12,6 +12,7 @@ is body.
 
 import io
 import pathlib
+import shutil
 import sys
 
 ROOT = pathlib.Path(__file__).parent
@@ -66,6 +67,9 @@ def build() -> int:
 
     out = ROOT / "index.html"
     io.open(out, "w", encoding="utf-8").write(page)
+
+    # The page loads its content from data.js next to index.html.
+    shutil.copyfile(ROOT / "src" / "data.js", ROOT / "data.js")
 
     if "—" in page:
         print("warning: an em dash slipped into the build")

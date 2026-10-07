@@ -64,45 +64,21 @@
   :focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
 
   .wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: 20px; }
-
-  /* Anchor targets must clear the sticky bar, which is taller on a phone. */
   [id] { scroll-margin-top: 150px; }
 
   h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; margin: 0; text-wrap: balance; }
 
-  .eyebrow {
-    font-family: var(--body);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .16em;
-    text-transform: uppercase;
-  }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 
   /* ---------- outlined object system ---------- */
-  .box {
-    border: 3px solid var(--ink);
-    border-radius: 24px;
-    background: var(--card);
-    box-shadow: var(--shadow);
-  }
-  .box--flat { box-shadow: none; }
+  .box { border: 3px solid var(--ink); border-radius: 24px; background: var(--card); box-shadow: var(--shadow); }
 
   .pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
-    min-height: 52px;
-    padding: 0 28px;
-    border: 3px solid var(--ink);
-    border-radius: 999px;
-    font-family: var(--display);
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    background: var(--card);
-    color: var(--ink);
-    box-shadow: var(--shadow-sm);
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    min-height: 52px; padding: 0 28px;
+    border: 3px solid var(--ink); border-radius: 999px;
+    font-family: var(--display); font-size: 17px; font-weight: 600; cursor: pointer;
+    background: var(--card); color: var(--ink); box-shadow: var(--shadow-sm);
     transition: transform .14s ease, box-shadow .14s ease;
   }
   .pill--pop { background: var(--pop); }
@@ -110,36 +86,14 @@
   .pill:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
   .pill--ink:hover { box-shadow: 7px 7px 0 rgba(255,255,255,.3); }
 
-  .sticker {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    border: 3px solid var(--ink);
-    border-radius: 999px;
-    background: var(--pop);
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 14px;
-    box-shadow: 4px 4px 0 var(--ink);
-  }
+  .chip { font-size: 13px; border: 2px solid var(--ink); border-radius: 999px; padding: 5px 12px; background: var(--card); color: var(--ink); }
+  button.chip { font-family: var(--body); cursor: pointer; min-height: 34px; transition: background .14s ease; }
+  button.chip:hover { background: var(--pop); }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
 
   /* ---------- nav ---------- */
-  .nav {
-    position: sticky;
-    top: env(safe-area-inset-top, 0px);
-    z-index: 40;
-    background: var(--ink);
-    border-bottom: 3px solid var(--ink);
-  }
-  .nav__in {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 26px;
-    padding-block: 12px;
-    color: #fff;
-  }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: var(--ink); border-bottom: 3px solid var(--ink); }
+  .nav__in { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px; padding-block: 12px; color: #fff; }
   .nav__mark { font-family: var(--display); font-weight: 600; font-size: 17px; margin-right: auto; }
   .nav__links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: rgba(255,255,255,.78); }
   .nav__links a:hover { color: var(--pop); }
@@ -147,61 +101,26 @@
   .nav .pill:hover { box-shadow: 5px 5px 0 rgba(255,255,255,.35); }
 
   /* ---------- hero ---------- */
-  .hero { position: relative; overflow: hidden; padding-block: 56px 72px; }
-  .hero__blob {
-    position: absolute;
-    right: -180px;
-    top: -140px;
-    width: 520px;
-    height: 520px;
-    border-radius: 50%;
-    background: var(--pop);
-    opacity: .5;
-    pointer-events: none;
-  }
+  .hero { position: relative; overflow: hidden; padding-block: 52px 68px; }
+  .hero__blob { position: absolute; right: -180px; top: -140px; width: 520px; height: 520px; border-radius: 50%; background: var(--pop); opacity: .5; pointer-events: none; }
   .hero__in { position: relative; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; }
   .hero__copy { flex: 999 1 460px; min-width: 0; }
-  .hero h1 {
-    font-size: clamp(52px, 8.4vw, 104px);
-    line-height: .94;
-    letter-spacing: -.035em;
-    margin-top: 22px;
-  }
-  .hero h1 em {
-    font-style: normal;
-    display: inline-block;
-    background: var(--pop);
-    border: 3px solid var(--ink);
-    border-radius: 18px;
-    padding: 0 16px 6px;
-    transform: rotate(-1.5deg);
-  }
-  .hero__lead { font-size: 19px; line-height: 1.65; color: var(--ink-soft); max-width: 50ch; margin: 26px 0 0; }
-  .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .hero h1 { font-size: clamp(42px, 6.2vw, 76px); line-height: 1.0; letter-spacing: -.035em; margin-top: 22px; }
+  .hero h1 em { font-style: normal; display: inline-block; background: var(--pop); border: 3px solid var(--ink); border-radius: 18px; padding: 0 14px 5px; transform: rotate(-1.5deg); }
+  .hero__kicker { margin: 18px 0 0; font-family: var(--display); font-size: 22px; font-weight: 500; color: var(--ink); }
+  .hero__lead { font-size: 18px; line-height: 1.7; color: var(--ink-soft); max-width: 54ch; margin: 14px 0 0; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
 
   .bento { flex: 1 1 400px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .shot { overflow: hidden; border: 3px solid var(--ink); border-radius: 22px; background: var(--mute-bg); }
   .shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
   .shot:hover img { transform: scale(1.06); }
-  /* No aspect-ratio: it stretches to the two square rows beside it. */
   .shot--tall { grid-row: span 2; box-shadow: var(--shadow); }
   .shot--sq { aspect-ratio: 1 / 1; }
 
-  /* The lockup is the programme's identity, so it leads the hero. The art has
-     a white ground, so it sits on a white card rather than on the paper. */
-  .hero__lockup {
-    display: block;
-    width: 300px;
-    max-width: 100%;
-    padding: 16px 22px;
-    background: #fff;
-    border: 3px solid var(--ink);
-    border-radius: 22px;
-    box-shadow: var(--shadow);
-    transform: rotate(-1.4deg);
-  }
+  .hero__lockup { display: block; width: 300px; max-width: 100%; padding: 16px 22px; background: #fff; border: 3px solid var(--ink); border-radius: 22px; box-shadow: var(--shadow); transform: rotate(-1.4deg); }
 
-  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 54px; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 50px; }
   .stat { padding: 22px 20px; background: var(--card); }
   .stat b { display: block; font-family: var(--display); font-size: 48px; line-height: 1; }
   .stat span { display: block; margin-top: 8px; font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
@@ -210,7 +129,7 @@
 
   /* ---------- marquee ---------- */
   .marquee { border-block: 3px solid var(--ink); background: var(--ink); overflow: hidden; padding-block: 16px; }
-  .marquee__track { display: flex; width: max-content; gap: 0; animation: roll 42s linear infinite; }
+  .marquee__track { display: flex; width: max-content; animation: roll 46s linear infinite; }
   .marquee--rev .marquee__track { animation-direction: reverse; }
   .marquee__set { display: flex; align-items: center; gap: 30px; padding-right: 30px; }
   .marquee__item { font-family: var(--display); font-weight: 600; font-size: 30px; color: #fff; white-space: nowrap; }
@@ -218,17 +137,17 @@
   .marquee__dot { width: 11px; height: 11px; border-radius: 50%; background: var(--pop); flex: none; }
   @keyframes roll { to { transform: translateX(-50%); } }
 
-  /* ---------- generic section ---------- */
+  /* ---------- sections ---------- */
   .sec { padding-block: 72px; }
   .sec__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
-  .sec h2 { font-size: clamp(34px, 4.6vw, 50px); line-height: 1.05; letter-spacing: -.02em; }
-  .sec__note { max-width: 44ch; font-size: 15px; color: var(--ink-soft); margin: 0; }
+  .sec h2 { font-size: clamp(32px, 4.4vw, 48px); line-height: 1.06; letter-spacing: -.02em; }
+  .sec__note { max-width: 46ch; font-size: 15px; color: var(--ink-soft); margin: 0; }
 
   .split { display: flex; flex-wrap: wrap; gap: 44px; }
   .split__main { flex: 999 1 480px; min-width: 0; }
   .split__side { flex: 1 1 320px; min-width: 0; }
   .prose p { font-size: 18px; line-height: 1.75; color: var(--ink-soft); max-width: 62ch; }
-  .prose p:first-child { color: var(--ink); }
+  .prose p:first-of-type { color: var(--ink); }
 
   .ledger { padding: 0; overflow: hidden; }
   .ledger__head { background: var(--ink); color: #fff; font-family: var(--display); font-weight: 600; padding: 14px 22px; }
@@ -238,38 +157,41 @@
   .ledger .row + .row { border-top: 2px solid #eceef3; padding-top: 16px; }
 
   /* ---------- categories ---------- */
-  .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; margin-top: 34px; }
-  .cat { grid-column: span 3; overflow: hidden; display: flex; flex-direction: column; }
-  .cat__media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-bottom: 3px solid var(--ink); background: var(--mute-bg); }
-  .cat__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s ease; }
-  .cat:hover .cat__media img { transform: scale(1.05); }
-  .cat__tag {
-    position: absolute;
-    left: 16px;
-    top: 16px;
-    padding: 7px 15px;
-    border: 3px solid var(--ink);
-    border-radius: 999px;
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 13px;
-    color: var(--ink);
-  }
-  .cat__body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-  .cat h3 { font-size: 27px; line-height: 1.12; letter-spacing: -.02em; }
-  .cat p { margin: 0; font-size: 15px; color: var(--ink-soft); flex-grow: 1; }
-  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
-  .chip { font-size: 13px; border: 2px solid var(--ink); border-radius: 999px; padding: 5px 12px; background: var(--card); }
-  .cat--hero { grid-column: span 6; }
-  .cat--hero .cat__media { aspect-ratio: 21 / 7; }
-  .cat--hero h3 { font-size: 42px; }
+  .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
+  .cat { grid-column: span 3; padding: 28px; display: flex; flex-direction: column; gap: 13px; }
+  .cat--wide { grid-column: span 6; }
   .cat--third { grid-column: span 2; }
-  .cat--empty { grid-column: span 3; border-style: dashed; box-shadow: none; background: var(--mute-bg); }
-  .cat--empty h3, .cat--empty p { color: var(--mute); }
-  .cat--empty .cat__body { padding-block: 28px; }
+  .cat__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--pop); color: var(--ink); display: flex; align-items: center; justify-content: center; }
+  .cat h3 { font-size: 26px; line-height: 1.12; letter-spacing: -.02em; }
+  .cat p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); flex-grow: 1; }
+  .cat__count { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--note); }
+  .cat--empty { background: #f7f8fa; border-style: dashed; box-shadow: none; }
+  .cat--empty .cat__icon { background: #e4e8ee; color: var(--mute); }
+  .cat--empty h3 { color: #5c657a; }
+  .cat--empty p { color: var(--mute); }
 
-  /* ---------- bento gallery ---------- */
-  .gal { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 150px; gap: 14px; margin-top: 34px; }
+  /* ---------- modules ---------- */
+  .mods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
+  .mod { padding: 28px; display: flex; flex-direction: column; gap: 10px; }
+  .mod__tag { font-family: var(--display); font-size: 15px; color: var(--note); }
+  .mod h3 { font-size: 28px; letter-spacing: -.02em; }
+  .mod p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); }
+  .mod__chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+  .mod__step { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; background: var(--pop); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 13px; }
+  .mod__step i { font-style: normal; font-size: 11px; opacity: .6; font-variant-numeric: tabular-nums; }
+  .mod__arrow { color: var(--mute); flex: none; }
+
+  /* ---------- coached ---------- */
+  .coached { background: var(--ink); color: #fff; border-block: 3px solid var(--ink); }
+  .coached__in { display: flex; flex-wrap: wrap; gap: 48px; padding-block: 70px; align-items: center; }
+  .coached h2 { flex: 1 1 380px; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.08; letter-spacing: -.02em; }
+  .coached__body { flex: 999 1 420px; min-width: 0; }
+  .coached__body p { margin: 0 0 16px; font-size: 17px; line-height: 1.75; color: rgba(255,255,255,.82); max-width: 58ch; }
+  .coached__body p:last-child { margin-bottom: 0; }
+  .coached__body b { color: var(--pop); font-weight: 600; }
+
+  /* ---------- gallery ---------- */
+  .gal { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 150px; gap: 14px; margin-top: 32px; }
   .gal .shot { box-shadow: var(--shadow-sm); }
   .gal .g-a { grid-column: span 2; grid-row: span 2; }
   .gal .g-b { grid-column: span 2; }
@@ -278,25 +200,12 @@
 
   /* ---------- find your school ---------- */
   .find { margin-top: 26px; max-width: 640px; }
-  .find__field {
-    display: flex; align-items: center; gap: 12px;
-    border: 3px solid var(--ink); border-radius: 999px; background: #fff;
-    padding: 6px 10px 6px 22px; box-shadow: var(--shadow);
-  }
-  .find__field input {
-    flex-grow: 1; min-width: 0; min-height: 54px;
-    border: 0; outline: 0; background: transparent;
-    font-family: var(--body); font-size: 17px; color: var(--ink);
-  }
+  .find__field { display: flex; align-items: center; gap: 12px; border: 3px solid var(--ink); border-radius: 999px; background: #fff; padding: 6px 10px 6px 22px; box-shadow: var(--shadow); }
+  .find__field input { flex-grow: 1; min-width: 0; min-height: 54px; border: 0; outline: 0; background: transparent; font-family: var(--body); font-size: 17px; color: var(--ink); }
   .find__field input::placeholder { color: var(--mute); }
   .find__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
   .find__chips > span { font-size: 13px; color: var(--mute); margin-right: 4px; }
-  .find__chip {
-    font: inherit; font-size: 14px; cursor: pointer; min-height: 40px;
-    border: 2px solid var(--ink); border-radius: 999px;
-    background: var(--card); color: var(--ink); padding: 7px 15px;
-    transition: background .14s ease;
-  }
+  .find__chip { font: inherit; font-size: 14px; cursor: pointer; min-height: 40px; border: 2px solid var(--ink); border-radius: 999px; background: var(--card); color: var(--ink); padding: 7px 15px; transition: background .14s ease; }
   .find__chip:hover { background: var(--pop); }
 
   .grouphead { display: flex; align-items: center; gap: 12px; margin-top: 44px; }
@@ -308,21 +217,16 @@
 
   .s-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
   .s-card { display: flex; flex-direction: column; overflow: hidden; }
-  .s-card__band {
-    background: var(--ink); color: #fff; padding: 18px 22px;
-    display: flex; align-items: baseline; gap: 10px;
-  }
+  .s-card__band { background: var(--ink); color: #fff; padding: 18px 22px; display: flex; align-items: baseline; gap: 10px; }
   .s-card__band b { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--pop); }
   .s-card__band span { font-size: 13px; color: rgba(255,255,255,.75); }
   .s-card__body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+  .s-card__brand { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--mute); }
   .s-card h3 { font-size: 27px; }
   .s-card .chips { flex-grow: 1; align-content: flex-start; }
 
   .s-list { margin-top: 16px; border-top: 2px solid #e6e8ee; }
-  .s-row {
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px;
-    padding: 16px 4px; border-bottom: 2px solid #e6e8ee;
-  }
+  .s-row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 20px; padding: 16px 4px; border-bottom: 2px solid #e6e8ee; }
   .s-row__name { font-family: var(--display); font-weight: 600; font-size: 20px; min-width: 190px; }
   .s-row__brand { font-size: 12px; color: var(--mute); min-width: 150px; }
   .s-row__note { flex: 1 1 230px; font-size: 14px; color: var(--ink-soft); }
@@ -335,50 +239,52 @@
   .status--gap { background: #fde8e3; color: #a33a24; }
 
   .res__count { margin: 24px 0 0; font-size: 15px; color: var(--ink-soft); }
-  .res__match { flex: 1 1 240px; font-size: 14px; color: var(--ink-soft); }
-  .res__match b { color: var(--ink); background: var(--pop); border-radius: 4px; padding: 1px 5px; font-weight: 600; }
-  .res__planned { font-style: italic; color: var(--mute); }
+  .res { margin-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .res__hit { padding: 22px 24px; display: flex; flex-wrap: wrap; gap: 14px 22px; box-shadow: var(--shadow-sm); }
+  .res__who { flex: 1 1 210px; min-width: 0; }
+  .res__who h3 { font-size: 22px; }
+  .res__who .s-card__brand { display: block; margin-bottom: 4px; }
+  .res__acts { flex: 999 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .res__act { border-left: 4px solid var(--pop); padding-left: 14px; }
+  .res__act b { font-family: var(--display); font-size: 16px; }
+  .res__act p { margin: 3px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+  .res__act em { font-style: normal; color: var(--note); }
+  .res__planned { border-left-color: var(--mute); }
+  .res__foot { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; border-top: 2px solid #eceef3; padding-top: 14px; }
   .res__empty { margin-top: 22px; padding: 28px; max-width: 640px; }
   .res__empty h3 { font-size: 22px; }
   .res__empty p { margin: 10px 0 20px; font-size: 15px; color: var(--ink-soft); }
 
-  /* ---------- notes & closing ---------- */
-  .note { margin-top: 24px; border: 3px solid var(--note); border-radius: 18px; background: var(--note-bg); padding: 18px 22px; color: var(--note); font-size: 14px; line-height: 1.7; }
+  .note { margin-top: 26px; border: 3px solid var(--note); border-radius: 18px; background: var(--note-bg); padding: 18px 22px; color: var(--note); font-size: 14px; line-height: 1.7; }
   .note b { font-family: var(--display); }
 
   .close { background: var(--pop); border-block: 3px solid var(--ink); }
   .close__in { display: flex; flex-wrap: wrap; gap: 36px; align-items: center; justify-content: space-between; padding-block: 72px; }
-  .close h2 { font-size: clamp(38px, 5.6vw, 62px); line-height: 1.02; letter-spacing: -.03em; }
-  .close p { max-width: 48ch; font-size: 18px; line-height: 1.7; color: rgba(16,44,83,.76); margin: 16px 0 0; }
+  .close h2 { font-size: clamp(36px, 5.2vw, 58px); line-height: 1.04; letter-spacing: -.03em; }
+  .close p { max-width: 50ch; font-size: 18px; line-height: 1.7; color: rgba(16,44,83,.76); margin: 16px 0 0; }
 
   .foot { background: var(--ink); color: rgba(255,255,255,.65); font-size: 14px; }
   .foot__in { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; padding-block: 28px; }
 
   @media (max-width: 900px) {
     .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .cat, .cat--hero, .cat--third, .cat--empty { grid-column: span 2; }
-    .s-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cat, .cat--wide, .cat--third { grid-column: span 2; }
+    .mods, .s-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
-    /* A three-row sticky bar ate 142px of a 844px screen. Drop the duplicate
-       CTA, since the hero carries the same one, and tighten what is left. */
     .nav__in { padding-block: 9px; gap: 6px 18px; }
     .nav__mark { font-size: 15px; width: 100%; }
     .nav__links { font-size: 14px; gap: 18px; }
     .nav .pill { display: none; }
     [id] { scroll-margin-top: 96px; }
-    /* 21:7 cropped the court shot to a 110px sliver at this width. */
-    .cat--hero .cat__media { aspect-ratio: 16 / 9; }
-    .cat--hero h3 { font-size: 32px; }
   }
   @media (max-width: 620px) {
-    .s-cards, .stats { grid-template-columns: 1fr; }
+    .mods, .s-cards, .stats { grid-template-columns: 1fr; }
     .s-row__name, .s-row__brand { min-width: 0; width: 100%; }
     .gal { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .gal .g-a { grid-column: span 2; }
     .marquee__item { font-size: 22px; }
-    .hero h1 em { padding-inline: 10px; }
     .hero__lockup { width: 232px; padding: 12px 16px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -392,11 +298,11 @@
   <div class="wrap nav__in">
     <span class="nav__mark">GEMS Education India</span>
     <div class="nav__links">
-      <a href="#about">What it is</a>
-      <a href="#categories">Categories</a>
+      <a href="#programme">The programme</a>
+      <a href="#categories">Something for every child</a>
       <a href="#schools">Your school</a>
     </div>
-    <a class="pill pill--pop" href="#schools">Find your school</a>
+    <a class="pill pill--pop" href="#schools">Find it at your school</a>
   </div>
 </nav>
 
@@ -407,13 +313,15 @@
       <div class="hero__lockup">
         <img src="img/btb-lockup.jpg" alt="GEMS Beyond the Bell, After-School Academies." width="1548" height="991" loading="eager">
       </div>
-      <h1>The hour<br>that is <em>theirs</em></h1>
-      <p class="hero__lead">Sports, performing arts, creativity, innovation, technology, life skills and entrepreneurship, beyond the regular school day. One programme across GEMS India, curated school by school.</p>
+      <h1>Their hour.<br>Their space.<br>Their <em>story</em>.</h1>
+      <p class="hero__kicker">Because what happens after the bell matters too.</p>
+      <p class="hero__lead">GEMS Beyond the Bell gives children the space to explore their interests, discover new passions and build skills that stay with them beyond the classroom. From sport and performing arts to creativity, innovation, technology, life skills and entrepreneurship, every school brings its own opportunities to life.</p>
+      <p class="hero__lead" style="color:var(--ink);font-weight:500">One programme across GEMS India. Curated school by school.</p>
       <div class="hero__cta">
         <a class="pill pill--pop" href="#schools">Find it at your school
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
         </a>
-        <a class="pill" href="#categories">See the seven categories</a>
+        <a class="pill" href="#categories">Something for every child</a>
       </div>
     </div>
 
@@ -431,67 +339,20 @@
   </div>
 
   <div class="wrap">
-    <div class="stats">
-      <div class="stat box"><b>7</b><span>categories, from sport to enterprise</span></div>
-      <div class="stat box stat--pop"><b>18</b><span>pursuits offered across the network</span></div>
-      <div class="stat box"><b>3</b><span>campuses running it today</span></div>
-      <div class="stat box"><b>6</b><span>more with a programme in planning</span></div>
-    </div>
+    <div class="stats" id="stats"></div>
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <div class="marquee__set">
-      <span class="marquee__item">Cricket</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Football</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Swimming</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Basketball</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Badminton</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Boxing</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Pickle Ball</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Martial Arts</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Skating</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Gymnastics</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Shooting</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Yoga</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Mountaineering</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Dance</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Music</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Drama</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Chess</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Entrepreneurship</span><span class="marquee__dot"></span>
-    </div>
-    <div class="marquee__set">
-      <span class="marquee__item">Cricket</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Football</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Swimming</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Basketball</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Badminton</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Boxing</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Pickle Ball</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Martial Arts</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Skating</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Gymnastics</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Shooting</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Yoga</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Mountaineering</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Dance</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Music</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Drama</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Chess</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Entrepreneurship</span><span class="marquee__dot"></span>
-    </div>
-  </div>
-</div>
+<div class="marquee" aria-hidden="true"><div class="marquee__track" id="marqueeTop"></div></div>
 
-<section class="sec wrap" id="about">
+<section class="sec wrap" id="programme">
   <div class="split">
     <div class="split__main prose">
-      <h2>One programme,<br>many possibilities</h2>
-      <p style="margin-top:22px">The proposition and the identity stay the same wherever you are in GEMS India. What is actually on offer does not.</p>
-      <p>Every school curates its own list around what its children ask for, the facilities it has, and the coaches and partners it works with. Some campuses run academies with specialist partners; at others our own coaches lead the sessions.</p>
-      <p>So this page tells you what Beyond the Bell is. Your school's page tells you what is running, when, what it costs and how to join.</p>
+      <h2>One programme.<br>Different schools.<br>Different stories.</h2>
+      <p style="margin-top:24px">The proposition and identity remain consistent across GEMS India. What children experience can be different at every school.</p>
+      <p>Each school curates its own Beyond the Bell programme around the interests of its students, the facilities available on campus, and the coaches and partners it works with. Some schools offer specialist academies through approved partners, while others are led by our own coaches and teams.</p>
+      <p>The result is a programme that feels right for each school community, while remaining part of the wider GEMS experience.</p>
+      <p style="color:var(--ink);font-weight:500">Your school's page tells you what is available, when it runs, the fees and how to join.</p>
     </div>
     <div class="split__side">
       <div class="box ledger">
@@ -517,151 +378,35 @@
 
 <section class="sec wrap" id="categories" style="padding-top:0">
   <div class="sec__head">
-    <h2>Seven categories</h2>
-    <p class="sec__note">No school runs all seven. Each picks what its children ask for and its grounds can carry.</p>
+    <h2>Something for every child</h2>
+    <p class="sec__note">From sport and performing arts to creativity, technology, innovation, life skills and entrepreneurship, Beyond the Bell gives children more opportunities to explore what interests them, discover new passions and grow beyond the classroom.</p>
   </div>
-
-  <div class="cats">
-
-    <article class="cat cat--hero box">
-      <div class="cat__media">
-        <img src="img/court.jpg" alt="Children lined out across a GEMS basketball court during an after-school session." width="1600" height="533" loading="lazy">
-        <span class="cat__tag" style="background:var(--pop)">13 pursuits · the biggest category</span>
-      </div>
-      <div class="cat__body">
-        <h3>Sports</h3>
-        <p>Coached sport on the field, the court, the mat and in the water, from a first lesson to inter-school play.</p>
-        <div class="chips">
-          <span class="chip">Cricket</span><span class="chip">Football</span><span class="chip">Swimming</span>
-          <span class="chip">Basketball</span><span class="chip">Badminton</span><span class="chip">Boxing</span>
-          <span class="chip">Pickle Ball</span><span class="chip">Martial Arts</span><span class="chip">Skating</span>
-          <span class="chip">Gymnastics</span><span class="chip">Shooting</span><span class="chip">Yoga</span>
-          <span class="chip">Mountaineering</span>
-        </div>
-      </div>
-    </article>
-
-    <article class="cat box">
-      <div class="cat__media">
-        <img src="img/stage-dance.jpg" alt="Children performing a dance on stage in costume at a GEMS school." width="1200" height="675" loading="lazy">
-        <span class="cat__tag" style="background:var(--coral);color:#fff">3 pursuits</span>
-      </div>
-      <div class="cat__body">
-        <h3>Performing Arts</h3>
-        <p>Dance, drama and music, taught properly and performed in front of people.</p>
-        <div class="chips">
-          <span class="chip">Dance</span><span class="chip">Music</span>
-          <span class="chip">Trinity Programme: Dance and Drama</span>
-        </div>
-      </div>
-    </article>
-
-    <article class="cat box">
-      <div class="cat__media">
-        <img src="img/skating.jpg" alt="A line of children inline skating in helmets and pads on a GEMS campus." width="1200" height="675" loading="lazy">
-        <span class="cat__tag" style="background:var(--cyan);color:#fff">Where it runs</span>
-      </div>
-      <div class="cat__body">
-        <h3>Every session is coached</h3>
-        <p>Academies with approved partners at some campuses, our own coaches at others. All are part of the GEMS ecosystem, and students are supervised until pick-up by an After School Programme Coordinator.</p>
-        <div class="chips">
-          <span class="chip">Specialist coaches</span><span class="chip">Approved partners</span><span class="chip">Supervised to pick-up</span>
-        </div>
-      </div>
-    </article>
-
-    <article class="cat cat--third box">
-      <div class="cat__media">
-        <img src="img/stream.jpg" alt="Students working together on a STREAM project at a GEMS school." width="900" height="506" loading="lazy">
-        <span class="cat__tag" style="background:var(--violet);color:#fff">1 pursuit</span>
-      </div>
-      <div class="cat__body">
-        <h3>Innovation &amp; Technology</h3>
-        <p>Robotics, coding and artificial intelligence.</p>
-        <div class="chips"><span class="chip">Artificial Intelligence: Bower School</span></div>
-      </div>
-    </article>
-
-    <article class="cat cat--third box">
-      <div class="cat__media">
-        <img src="img/science.jpg" alt="Children gathered around a microscope in a GEMS science lab." width="900" height="506" loading="lazy">
-        <span class="cat__tag" style="background:var(--green);color:#fff">2 pursuits</span>
-      </div>
-      <div class="cat__body">
-        <h3>Life Skills</h3>
-        <p>Thinking clearly, speaking well, working with other people.</p>
-        <div class="chips"><span class="chip">Chess</span><span class="chip">Financial literacy</span></div>
-      </div>
-    </article>
-
-    <article class="cat cat--third box">
-      <div class="cat__media">
-        <img src="img/making.jpg" alt="A child pouring paint into a container during a making activity at a GEMS school." width="900" height="506" loading="lazy">
-        <span class="cat__tag" style="background:var(--pop)">1 pursuit</span>
-      </div>
-      <div class="cat__body">
-        <h3>Entrepreneurship</h3>
-        <p>Money, ideas and enterprise, from an early age.</p>
-        <div class="chips"><span class="chip">Bower School of Entrepreneurship</span></div>
-      </div>
-    </article>
-
-    <article class="cat cat--empty box">
-      <div class="cat__body">
-        <span class="eyebrow" style="color:var(--mute)">Category 6</span>
-        <h3>Creativity &amp; Design</h3>
-        <p>Making, drawing, designing and building things.</p>
-        <span class="chip" style="border-color:var(--mute);color:var(--note);align-self:flex-start">No activity sent by any campus yet</span>
-      </div>
-    </article>
-
-    <article class="cat cat--empty box">
-      <div class="cat__body">
-        <span class="eyebrow" style="color:var(--mute)">Category 7</span>
-        <h3>Other Future-Focused Opportunities</h3>
-        <p>Whatever a school adds for the years ahead.</p>
-        <span class="chip" style="border-color:var(--mute);color:var(--note);align-self:flex-start">No activity sent by any campus yet</span>
-      </div>
-    </article>
-
-  </div>
-
-  <p class="note"><b>Note for GEMS, not for parents.</b> Two of the seven categories have nothing against them, and Innovation &amp; Technology rests on Kochi's Bower School alone. Which activity sits in which category is also my reading, Chess in particular, and each school still owes a one-line description per activity.</p>
+  <div class="cats" id="cats"></div>
+  <p class="note" id="catsNote"></p>
 </section>
 
-<div class="marquee marquee--rev" aria-hidden="true">
-  <div class="marquee__track">
-    <div class="marquee__set">
-      <span class="marquee__item">Beyond the Bell</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Kochi</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Gurgaon</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Varanasi</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Indirapuram</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Jodhpur</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Lucknow</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Vikhroli</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Kalyan</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Coimbatore</span><span class="marquee__dot"></span>
-    </div>
-    <div class="marquee__set">
-      <span class="marquee__item">Beyond the Bell</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Kochi</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Gurgaon</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Varanasi</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Indirapuram</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Jodhpur</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Lucknow</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Vikhroli</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Kalyan</span><span class="marquee__dot"></span>
-      <span class="marquee__item">Coimbatore</span><span class="marquee__dot"></span>
+<section class="sec wrap" id="modules" style="padding-top:0">
+  <div class="sec__head">
+    <h2>Learning, one module<br>at a time</h2>
+    <p class="sec__note">Every activity follows a clear progression, so you always know what your child is working on next.</p>
+  </div>
+  <div class="mods" id="mods"></div>
+</section>
+
+<section class="coached">
+  <div class="wrap coached__in">
+    <h2>Expertly coached.<br>Thoughtfully supported.</h2>
+    <div class="coached__body">
+      <p>Beyond the Bell academies may be led by approved specialist partners or by GEMS coaches and teams.</p>
+      <p>Whichever model a school uses, every experience sits within the GEMS ecosystem, with students supported and supervised by an <b>After School Programme Coordinator</b> until they are picked up.</p>
     </div>
   </div>
-</div>
+</section>
 
 <section class="sec wrap">
   <div class="sec__head">
-    <h2>What the hour<br>actually looks like</h2>
-    <p class="sec__note">Photography from GEMS campuses across India. Each campus page carries its own pictures once the school approves them.</p>
+    <h2>Curated for<br>every school</h2>
+    <p class="sec__note">Every GEMS school is different. So is its Beyond the Bell programme. Schools choose what to offer based on their students' interests, the spaces and facilities available, and the expertise and partnerships they can bring to the experience.</p>
   </div>
   <div class="gal">
     <div class="shot g-a"><img src="img/pool.jpg" alt="Children swimming lengths in a GEMS school pool." width="1200" height="800" loading="lazy"></div>
@@ -671,15 +416,18 @@
     <div class="shot g-c"><img src="img/yoga-hall.jpg" alt="A hall full of children holding a balance pose together." width="600" height="900" loading="lazy"></div>
     <div class="shot g-d"><img src="img/basketball.jpg" alt="A child shooting at a basketball hoop." width="600" height="600" loading="lazy"></div>
     <div class="shot g-d"><img src="img/skateboard.jpg" alt="A child riding a skateboard ramp in full safety gear." width="600" height="600" loading="lazy"></div>
-    <div class="shot g-b"><img src="img/sports-day.jpg" alt="A child running on a grass track at a GEMS sports day." width="1200" height="600" loading="lazy"></div>
+    <div class="shot g-b"><img src="img/skating.jpg" alt="A line of children inline skating in helmets and pads." width="1200" height="600" loading="lazy"></div>
     <div class="shot g-b"><img src="img/running.jpg" alt="A child mid-race, grinning, at a GEMS athletics meet." width="1200" height="600" loading="lazy"></div>
   </div>
+  <p style="margin:18px 0 0;font-size:14px;color:var(--ink-soft)">Photography from GEMS campuses across India.</p>
 </section>
 
-<section class="sec wrap" id="schools" style="padding-top:0">
+<div class="marquee marquee--rev" aria-hidden="true"><div class="marquee__track" id="marqueeBottom"></div></div>
+
+<section class="sec wrap" id="schools">
   <div class="sec__head">
-    <h2>Find it at your school</h2>
-    <p class="sec__note">Eleven GEMS campuses across India, each with its own list. Tell us your city, or what your child already loves.</p>
+    <h2>Find Beyond the Bell<br>at your school</h2>
+    <p class="sec__note">Every GEMS school has its own programme, shaped around its students and its community. Find your school to discover what is on offer, when programmes run, the fees and how to join.</p>
   </div>
 
   <div class="find">
@@ -700,7 +448,7 @@
   <div id="findDefault"></div>
   <div id="findResults" hidden></div>
 
-  <p class="note"><b>Note for GEMS, not for parents.</b> Millennium Kochi and Raipur are held out of the lists above because neither document says whether they are running or planned; they appear in search, labelled honestly. The three open campuses carry their activity names rather than a photograph, because approved per-campus photography has not been confirmed and a picture on a card named Gurgaon claims it was taken there. Search also treats Soccer and Football as the same thing, which GEMS should fix at source when each school submits its list.</p>
+  <p class="note"><b>Note for GEMS, not for parents.</b> Two of the seven categories, Creativity &amp; Design and Future-Focused Opportunities, have no activity against them in any campus list. Millennium Kochi and Raipur are held out of the groups above because neither document says whether they are running or planned; they appear in search, labelled honestly. The open campuses carry activity names rather than photographs, because approved per-campus photography has not been confirmed. Search treats Soccer and Football, and Basket Ball and Basketball, as the same thing, which GEMS should fix at source.</p>
 </section>
 
 <section class="close">
@@ -710,7 +458,7 @@
       <p>Tell us where you are and what your child is drawn to. The GEMS India team will point you to the right campus and the right person.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:14px">
-      <a class="pill pill--ink" href="#schools">Register Your Interest</a>
+      <a class="pill pill--ink" href="#schools">Register your interest</a>
       <a class="pill" href="#schools">Browse the schools</a>
     </div>
   </div>
@@ -723,87 +471,126 @@
   </div>
 </footer>
 
+<script src="data.js"></script>
 <script>
   (function () {
-    var SCHOOLS = [
-      { city: 'Kochi', brand: 'GEMS Modern Academy', state: 'on',
-        note: 'Sport, performing arts, life skills and entrepreneurship, including the Trinity and Bower School programmes.',
-        acts: ['Basket Ball', 'Football', 'Badminton', 'Chess', 'Trinity Programme', 'Bower School'] },
-      { city: 'Gurgaon', brand: 'GEMS Millennium School', state: 'on',
-        note: 'Six sports academies, from cricket and swimming to boxing and pickle ball.',
-        acts: ['Cricket', 'Badminton', 'Soccer', 'Boxing', 'Swimming', 'Pickle Ball'] },
-      { city: 'Varanasi', brand: 'GEMS Millennium School', state: 'on',
-        note: 'Three sports academies, coached across the week.',
-        acts: ['Cricket', 'Basketball', 'Swimming'] },
-      { city: 'Indirapuram', brand: 'GEMS Millennium School', state: 'soon',
-        note: 'Eight activities planned, including gymnastics and mountaineering.',
-        acts: ['Swimming', 'Gymnastics', 'Shooting', 'Football', 'Dance and Aerobics', 'Pickle Ball', 'Yoga', 'Mountaineering'] },
-      { city: 'Jodhpur', brand: 'GEMS School of Excellence', state: 'soon',
-        note: 'Five planned, across sport, dance and music.',
-        acts: ['Cricket', 'Football', 'Basketball', 'Dance', 'Music'] },
-      { city: 'Lucknow', brand: 'GEMS School of Excellence', state: 'soon',
-        note: 'Five planned, including martial arts and skating.',
-        acts: ['Martial Arts', 'Football', 'Skating', 'Music', 'Dance'] },
-      { city: 'Vikhroli, Mumbai', brand: 'GEMS Millennium School', state: 'soon', note: 'Programme being planned.', acts: [] },
-      { city: 'Kalyan, Mumbai', brand: 'GEMS Millennium School', state: 'soon', note: 'Programme being planned.', acts: [] },
-      { city: 'Coimbatore', brand: 'GEMS Modern Academy', state: 'soon', note: 'Programme being planned.', acts: [] },
-      { city: 'Kochi', brand: 'GEMS Millennium School', state: 'gap', note: 'Status not yet confirmed.', acts: [] },
-      { city: 'Raipur', brand: 'GEMS Millennium School', state: 'gap', note: 'Status not yet confirmed.', acts: [] }
-    ];
-
+    var D = window.BTB;
     var LABEL = { on: 'Running now', soon: 'Opening soon', gap: 'Not confirmed' };
     var CHIP = { on: 'status--on', soon: 'status--soon', gap: 'status--gap' };
     var ARROW = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>';
 
-    /* GEMS wrote Soccer at Gurgaon and Football everywhere else, and spells
-       basketball and pickle ball two ways. A parent should not have to guess. */
-    var ALIASES = [
-      ['football', 'soccer'], ['basketball', 'basket ball'], ['pickleball', 'pickle ball'],
-      ['karate', 'martial arts'], ['drama', 'trinity'], ['theatre', 'trinity'],
-      ['ai', 'bower'], ['business', 'bower'], ['gym', 'gymnastics']
-    ];
+    var ICONS = {
+      sport: '<circle cx="12" cy="12" r="8"></circle><path d="m12 8 3.2 2.3-1.2 3.8h-4l-1.2-3.8L12 8Z"></path><path d="M12 4v4M4.6 9.6l4.2.7M19.4 9.6l-4.2.7M7.4 19l2.6-5M16.6 19 14 14"></path>',
+      arts: '<path d="M9 17V5l10-2v12"></path><circle cx="6.5" cy="17.5" r="2.5"></circle><circle cx="16.5" cy="15.5" r="2.5"></circle>',
+      tech: '<rect x="8" y="8" width="8" height="8" rx="1.5"></rect><path d="M10 4v4M14 4v4M10 16v4M14 16v4M4 10h4M4 14h4M16 10h4M16 14h4"></path>',
+      life: '<circle cx="9" cy="7" r="3"></circle><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><path d="M16 11a3 3 0 1 0-1.8-5.4"></path><path d="M17 14.5c2.3.6 4 2.6 4 5"></path>',
+      ent: '<path d="M9 15.5a5 5 0 1 1 6 0V18H9v-2.5Z"></path><path d="M10 20.5h4"></path><path d="M2.5 9h2M19.5 9h2M5.2 3.7 6.6 5.1M18.8 3.7 17.4 5.1"></path>',
+      design: '<path d="M14.5 4.5 19.5 9.5 8 21H3v-5L14.5 4.5Z"></path><path d="m12.5 6.5 5 5"></path>',
+      future: '<path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8L12 3Z"></path>'
+    };
 
-    function terms(q) {
-      var list = [q];
-      ALIASES.forEach(function (pair) {
-        if (pair[0].indexOf(q) === 0 || q.indexOf(pair[0]) === 0) list.push(pair[1]);
-        if (pair[1].indexOf(q) === 0 || q.indexOf(pair[1]) === 0) list.push(pair[0]);
+    function icon(key) {
+      return '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + ICONS[key] + '</svg>';
+    }
+
+    /* ---------- stats ---------- */
+    var running = D.SCHOOLS.filter(function (s) { return s.state === 'on'; }).length;
+    var planned = D.SCHOOLS.filter(function (s) { return s.state === 'soon' && s.acts.length; }).length;
+    document.getElementById('stats').innerHTML = [
+      ['7', 'categories, from sport to enterprise'],
+      [String(D.distinctPursuits()), 'distinct pursuits across the network'],
+      [String(running), 'campuses running it today'],
+      [String(planned), 'more with their list already set']
+    ].map(function (s, i) {
+      return '<div class="stat box' + (i === 1 ? ' stat--pop' : '') + '"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
+    }).join('');
+
+    /* ---------- marquees ---------- */
+    function marquee(el, items) {
+      var set = '<div class="marquee__set">' + items.map(function (t) {
+        return '<span class="marquee__item">' + t + '</span><span class="marquee__dot"></span>';
+      }).join('') + '</div>';
+      el.innerHTML = set + set;
+    }
+    var pursuits = [];
+    D.SCHOOLS.forEach(function (s) {
+      s.acts.forEach(function (a) {
+        var label = (D.SAME[a] || a).replace('Bower School: ', '');
+        if (pursuits.indexOf(label) === -1) pursuits.push(label);
       });
-      return list;
-    }
+    });
+    marquee(document.getElementById('marqueeTop'), pursuits);
+    marquee(document.getElementById('marqueeBottom'), D.SCHOOLS.map(function (s) { return s.city.split(',')[0]; }));
 
-    function matchedActs(s, q) {
-      var want = terms(q);
-      return s.acts.filter(function (a) {
-        var low = a.toLowerCase();
-        return want.some(function (t) { return low.indexOf(t) > -1; });
-      });
-    }
+    /* ---------- categories ---------- */
+    var SPAN = { sport: 'cat--wide', arts: 'cat', tech: 'cat--third', life: 'cat--third', ent: 'cat--third', design: 'cat', future: 'cat' };
+    document.getElementById('cats').innerHTML = D.CATEGORIES.map(function (c) {
+      var acts = D.byCategory(c.key);
+      var span = SPAN[c.key] === 'cat' ? '' : ' ' + SPAN[c.key];
+      var empty = acts.length ? '' : ' cat--empty';
+      var body = acts.length
+        ? '<div class="chips">' + acts.map(function (a) {
+            return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
+          }).join('') + '</div>'
+        : '<span class="cat__count">No activity sent by any campus yet</span>';
+      return '<article class="cat box' + span + empty + '">' +
+        '<span class="cat__icon">' + icon(c.key) + '</span>' +
+        '<h3>' + c.name + '</h3>' +
+        '<p>' + c.blurb + '</p>' + body + '</article>';
+    }).join('');
 
-    function go(s) {
-      return '<a class="s-row__go" href="#schools">' + (s.state === 'on' ? 'View &amp; register' : 'Register interest') + ' ' + ARROW + '</a>';
-    }
+    var filled = D.CATEGORIES.filter(function (c) { return D.byCategory(c.key).length; }).length;
+    document.getElementById('catsNote').innerHTML =
+      '<b>Note for GEMS, not for parents.</b> ' + filled + ' of the 7 categories carry an activity today. ' +
+      'Which activity sits in which category is my reading of the lists, not GEMS’s, and Chess is the one most worth a second look. ' +
+      'Every description on this page is GEMS copy, taken from the parent-facing activity modules document.';
 
-    function head(dot, text) {
-      return '<div class="grouphead"><i class="' + dot + '"></i><h3>' + text + '</h3><span class="rule"></span></div>';
-    }
+    /* ---------- modules ---------- */
+    var withModules = Object.keys(D.ACTIVITIES).filter(function (k) { return D.ACTIVITIES[k].modules; });
+    document.getElementById('mods').innerHTML = withModules.map(function (name) {
+      var a = D.ACTIVITIES[name];
+      var chain = a.modules.map(function (m, i) {
+        return (i ? '<svg class="mod__arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>' : '') +
+          '<span class="mod__step"><i>' + (i + 1) + '</i>' + m + '</span>';
+      }).join('');
+      return '<article class="mod box">' +
+        (a.tag ? '<span class="mod__tag">' + a.tag + '</span>' : '') +
+        '<h3>' + name + '</h3>' +
+        '<p>' + (a.lead || a.diff) + '</p>' +
+        '<div class="mod__chain">' + chain + '</div></article>';
+    }).join('');
 
+    /* ---------- find your school ---------- */
     var elDefault = document.getElementById('findDefault');
     var elResults = document.getElementById('findResults');
     var input = document.getElementById('findSchool');
 
-    /* At rest the section is grouped: the three you can join, then the rest. */
+    function go(s) {
+      return '<a class="s-row__go" href="#schools">' + (s.state === 'on' ? 'View &amp; register' : 'Register interest') + ' ' + ARROW + '</a>';
+    }
+    function head(dot, text) {
+      return '<div class="grouphead"><i class="' + dot + '"></i><h3>' + text + '</h3><span class="rule"></span></div>';
+    }
+    function summary(s) {
+      if (!s.acts.length) return s.state === 'gap' ? 'Status not yet confirmed.' : 'Programme being planned.';
+      var cats = {};
+      s.acts.forEach(function (a) { if (D.ACTIVITIES[a]) cats[D.ACTIVITIES[a].cat] = true; });
+      var names = D.CATEGORIES.filter(function (c) { return cats[c.key]; }).map(function (c) { return c.name.toLowerCase(); });
+      return s.acts.length + ' activities across ' + names.join(', ') + '.';
+    }
+
     function renderDefault() {
-      var live = SCHOOLS.filter(function (s) { return s.state === 'on'; });
-      var soon = SCHOOLS.filter(function (s) { return s.state === 'soon'; });
+      var live = D.SCHOOLS.filter(function (s) { return s.state === 'on'; });
+      var soon = D.SCHOOLS.filter(function (s) { return s.state === 'soon'; });
 
       var cards = '<div class="s-cards">' + live.map(function (s) {
         return '<article class="s-card box">' +
           '<div class="s-card__band"><b>' + s.acts.length + '</b><span>activities running now</span></div>' +
           '<div class="s-card__body">' +
-          '<span class="school__brand" style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)">' + s.brand + '</span>' +
-          '<h3>' + s.city + '</h3>' +
-          '<div class="chips">' + s.acts.map(function (a) { return '<span class="chip">' + a + '</span>'; }).join('') + '</div>' +
+          '<span class="s-card__brand">' + s.brand + '</span><h3>' + s.city + '</h3>' +
+          '<div class="chips">' + s.acts.map(function (a) {
+            return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
+          }).join('') + '</div>' +
           '<a class="pill pill--pop" href="#schools">View &amp; register</a>' +
           '</div></article>';
       }).join('') + '</div>';
@@ -812,20 +599,42 @@
         return '<div class="s-row">' +
           '<span class="s-row__name">' + s.city + '</span>' +
           '<span class="s-row__brand">' + s.brand.replace('GEMS ', '') + '</span>' +
-          '<span class="s-row__note">' + s.note + '</span>' +
+          '<span class="s-row__note">' + (s.acts.length ? s.acts.length + ' activities planned, including ' + s.acts.slice(0, 2).join(' and ').toLowerCase() + '.' : 'Programme being planned.') + '</span>' +
           go(s) + '</div>';
       }).join('') + '</div>';
 
-      elDefault.innerHTML =
-        head('dot-on', 'Open for registration') + cards +
+      elDefault.innerHTML = head('dot-on', 'Open for registration') + cards +
         head('dot-soon', 'Opening soon, register your interest') + rows;
+    }
+
+    function terms(q) {
+      var list = [q];
+      D.ALIASES.forEach(function (pair) {
+        if (pair[0].indexOf(q) === 0 || q.indexOf(pair[0]) === 0) list.push(pair[1]);
+        if (pair[1].indexOf(q) === 0 || q.indexOf(pair[1]) === 0) list.push(pair[0]);
+      });
+      return list;
+    }
+
+    /* Match on word starts, not anywhere in the string: a plain substring search
+       for "ai" hit "aiming" in Shooting and "Raipur". Two letters or fewer have
+       to be a whole word, so "AI" finds the Bower programme and nothing else. */
+    function tester(t) {
+      var esc = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return new RegExp(t.length <= 2 ? '\\b' + esc + '\\b' : '\\b' + esc, 'i');
     }
 
     function renderSearch(term) {
       var q = term.trim().toLowerCase();
-      var hits = SCHOOLS.map(function (s) {
-        var place = (s.city + ' ' + s.brand).toLowerCase().indexOf(q) > -1;
-        var acts = matchedActs(s, q);
+      var tests = terms(q).map(tester);
+      var hits = D.SCHOOLS.map(function (s) {
+        var where = s.city + ' ' + s.brand;
+        var place = tests.some(function (re) { return re.test(where); });
+        var acts = s.acts.filter(function (a) {
+          var meta = D.ACTIVITIES[a] || {};
+          var hay = a + ' ' + (meta.cover || '');
+          return tests.some(function (re) { return re.test(hay); });
+        });
         return (place || acts.length) ? { s: s, acts: acts } : null;
       }).filter(Boolean);
 
@@ -835,8 +644,7 @@
       });
 
       if (!hits.length) {
-        elResults.innerHTML =
-          '<div class="res__empty box"><h3>No GEMS campus matches that yet</h3>' +
+        elResults.innerHTML = '<div class="res__empty box"><h3>No GEMS campus matches that yet</h3>' +
           '<p>The programme is still opening across India. Tell us where you are and what your child is drawn to, and the GEMS India team will point you to the closest campus.</p>' +
           '<a class="pill pill--pop" href="#schools">Register your interest</a></div>';
         return;
@@ -847,20 +655,28 @@
         ' for &ldquo;' + term.trim() + '&rdquo;' +
         (live ? ', ' + live + ' open for registration now' : ', none open for registration yet') + '.</p>';
 
-      var rows = '<div class="s-list" style="margin-top:18px">' + hits.map(function (h) {
+      var cards = '<div class="res">' + hits.map(function (h) {
         var detail = h.acts.length
-          ? (h.s.state === 'on'
-              ? 'Runs <b>' + h.acts.join('</b>, <b>') + '</b>'
-              : '<span class="res__planned">Plans <b>' + h.acts.join('</b>, <b>') + '</b></span>')
-          : h.s.note;
-        return '<div class="s-row">' +
-          '<span class="s-row__name">' + h.s.city + '</span>' +
-          '<span class="status ' + CHIP[h.s.state] + '">' + LABEL[h.s.state] + '</span>' +
-          '<span class="res__match">' + detail + '</span>' +
-          go(h.s) + '</div>';
+          ? h.acts.map(function (a) {
+              var meta = D.ACTIVITIES[a] || {};
+              var planned = h.s.state !== 'on';
+              return '<div class="res__act' + (planned ? ' res__planned' : '') + '">' +
+                '<b>' + a + (planned ? ' <em>(planned)</em>' : '') + '</b>' +
+                '<p>' + (meta.cover || '') + '</p>' +
+                (meta.diff ? '<p><em>' + meta.diff + '</em></p>' : '') + '</div>';
+            }).join('')
+          : '<div class="res__act res__planned"><p>' + summary(h.s) + '</p></div>';
+
+        return '<article class="res__hit box">' +
+          '<div class="res__who"><span class="s-card__brand">' + h.s.brand + '</span>' +
+          '<h3>' + h.s.city + '</h3>' +
+          '<span class="status ' + CHIP[h.s.state] + '">' + LABEL[h.s.state] + '</span></div>' +
+          '<div class="res__acts">' + detail + '</div>' +
+          '<div class="res__foot"><span style="font-size:13px;color:var(--mute)">' + summary(h.s) + '</span>' + go(h.s) + '</div>' +
+          '</article>';
       }).join('') + '</div>';
 
-      elResults.innerHTML = count + rows;
+      elResults.innerHTML = count + cards;
     }
 
     function update() {
@@ -877,6 +693,15 @@
         update();
         input.focus();
       });
+    });
+
+    /* An activity chip anywhere on the page searches for that activity. */
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('[data-find]') : null;
+      if (!btn) return;
+      input.value = btn.getAttribute('data-find');
+      update();
+      document.getElementById('schools').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     renderDefault();
