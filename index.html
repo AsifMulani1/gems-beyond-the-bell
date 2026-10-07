@@ -160,15 +160,9 @@
   .cats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
   .cat { grid-column: span 3; padding: 28px; display: flex; flex-direction: column; gap: 13px; }
   .cat--wide { grid-column: span 6; }
-  .cat--third { grid-column: span 2; }
   .cat__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--pop); color: var(--ink); display: flex; align-items: center; justify-content: center; }
   .cat h3 { font-size: 26px; line-height: 1.12; letter-spacing: -.02em; }
   .cat p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--ink-soft); flex-grow: 1; }
-  .cat__count { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--note); }
-  .cat--empty { background: #f7f8fa; border-style: dashed; box-shadow: none; }
-  .cat--empty .cat__icon { background: #e4e8ee; color: var(--mute); }
-  .cat--empty h3 { color: #5c657a; }
-  .cat--empty p { color: var(--mute); }
 
   /* ---------- modules ---------- */
   .mods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 32px; }
@@ -236,7 +230,6 @@
   .status { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
   .status--on { background: var(--green); color: #fff; }
   .status--soon { background: var(--pop); color: var(--ink); }
-  .status--gap { background: #fde8e3; color: #a33a24; }
 
   .res__count { margin: 24px 0 0; font-size: 15px; color: var(--ink-soft); }
   .res { margin-top: 18px; display: flex; flex-direction: column; gap: 14px; }
@@ -255,8 +248,6 @@
   .res__empty h3 { font-size: 22px; }
   .res__empty p { margin: 10px 0 20px; font-size: 15px; color: var(--ink-soft); }
 
-  .note { margin-top: 26px; border: 3px solid var(--note); border-radius: 18px; background: var(--note-bg); padding: 18px 22px; color: var(--note); font-size: 14px; line-height: 1.7; }
-  .note b { font-family: var(--display); }
 
   .close { background: var(--pop); border-block: 3px solid var(--ink); }
   .close__in { display: flex; flex-wrap: wrap; gap: 36px; align-items: center; justify-content: space-between; padding-block: 72px; }
@@ -268,7 +259,7 @@
 
   @media (max-width: 900px) {
     .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .cat, .cat--wide, .cat--third { grid-column: span 2; }
+    .cat, .cat--wide { grid-column: span 2; }
     .mods, .s-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
@@ -382,7 +373,6 @@
     <p class="sec__note">From sport and performing arts to creativity, technology, innovation, life skills and entrepreneurship, Beyond the Bell gives children more opportunities to explore what interests them, discover new passions and grow beyond the classroom.</p>
   </div>
   <div class="cats" id="cats"></div>
-  <p class="note" id="catsNote"></p>
 </section>
 
 <section class="sec wrap" id="modules" style="padding-top:0">
@@ -448,7 +438,6 @@
   <div id="findDefault"></div>
   <div id="findResults" hidden></div>
 
-  <p class="note"><b>Note for GEMS, not for parents.</b> Two of the seven categories, Creativity &amp; Design and Future-Focused Opportunities, have no activity against them in any campus list. Millennium Kochi and Raipur are held out of the groups above because neither document says whether they are running or planned; they appear in search, labelled honestly. The open campuses carry activity names rather than photographs, because approved per-campus photography has not been confirmed. Search treats Soccer and Football, and Basket Ball and Basketball, as the same thing, which GEMS should fix at source.</p>
 </section>
 
 <section class="close">
@@ -475,8 +464,8 @@
 <script>
   (function () {
     var D = window.BTB;
-    var LABEL = { on: 'Running now', soon: 'Opening soon', gap: 'Not confirmed' };
-    var CHIP = { on: 'status--on', soon: 'status--soon', gap: 'status--gap' };
+    var LABEL = { on: 'Running now', soon: 'Opening soon' };
+    var CHIP = { on: 'status--on', soon: 'status--soon' };
     var ARROW = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>';
 
     var ICONS = {
@@ -495,12 +484,12 @@
 
     /* ---------- stats ---------- */
     var running = D.SCHOOLS.filter(function (s) { return s.state === 'on'; }).length;
-    var planned = D.SCHOOLS.filter(function (s) { return s.state === 'soon' && s.acts.length; }).length;
+    var soon = D.SCHOOLS.filter(function (s) { return s.state === 'soon'; }).length;
     document.getElementById('stats').innerHTML = [
-      ['7', 'categories, from sport to enterprise'],
       [String(D.distinctPursuits()), 'distinct pursuits across the network'],
+      [String(D.liveCategories().length), 'categories, from sport to enterprise'],
       [String(running), 'campuses running it today'],
-      [String(planned), 'more with their list already set']
+      [String(soon), 'more opening soon']
     ].map(function (s, i) {
       return '<div class="stat box' + (i === 1 ? ' stat--pop' : '') + '"><b>' + s[0] + '</b><span>' + s[1] + '</span></div>';
     }).join('');
@@ -523,27 +512,19 @@
     marquee(document.getElementById('marqueeBottom'), D.SCHOOLS.map(function (s) { return s.city.split(',')[0]; }));
 
     /* ---------- categories ---------- */
-    var SPAN = { sport: 'cat--wide', arts: 'cat', tech: 'cat--third', life: 'cat--third', ent: 'cat--third', design: 'cat', future: 'cat' };
-    document.getElementById('cats').innerHTML = D.CATEGORIES.map(function (c) {
+    /* Sports carries most of the network, so it leads full width. The rest
+       pair off two to a row, which stays tidy however many survive the filter. */
+    document.getElementById('cats').innerHTML = D.liveCategories().map(function (c) {
       var acts = D.byCategory(c.key);
-      var span = SPAN[c.key] === 'cat' ? '' : ' ' + SPAN[c.key];
-      var empty = acts.length ? '' : ' cat--empty';
-      var body = acts.length
-        ? '<div class="chips">' + acts.map(function (a) {
-            return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
-          }).join('') + '</div>'
-        : '<span class="cat__count">No activity sent by any campus yet</span>';
-      return '<article class="cat box' + span + empty + '">' +
+      var span = c.key === 'sport' ? ' cat--wide' : '';
+      var body = '<div class="chips">' + acts.map(function (a) {
+        return '<button type="button" class="chip" data-find="' + a.replace('Bower School: ', '') + '">' + a + '</button>';
+      }).join('') + '</div>';
+      return '<article class="cat box' + span + '">' +
         '<span class="cat__icon">' + icon(c.key) + '</span>' +
         '<h3>' + c.name + '</h3>' +
         '<p>' + c.blurb + '</p>' + body + '</article>';
     }).join('');
-
-    var filled = D.CATEGORIES.filter(function (c) { return D.byCategory(c.key).length; }).length;
-    document.getElementById('catsNote').innerHTML =
-      '<b>Note for GEMS, not for parents.</b> ' + filled + ' of the 7 categories carry an activity today. ' +
-      'Which activity sits in which category is my reading of the lists, not GEMS’s, and Chess is the one most worth a second look. ' +
-      'Every description on this page is GEMS copy, taken from the parent-facing activity modules document.';
 
     /* ---------- modules ---------- */
     var withModules = Object.keys(D.ACTIVITIES).filter(function (k) { return D.ACTIVITIES[k].modules; });
@@ -572,7 +553,7 @@
       return '<div class="grouphead"><i class="' + dot + '"></i><h3>' + text + '</h3><span class="rule"></span></div>';
     }
     function summary(s) {
-      if (!s.acts.length) return s.state === 'gap' ? 'Status not yet confirmed.' : 'Programme being planned.';
+      if (!s.acts.length) return 'Programme being planned.';
       var cats = {};
       s.acts.forEach(function (a) { if (D.ACTIVITIES[a]) cats[D.ACTIVITIES[a].cat] = true; });
       var names = D.CATEGORIES.filter(function (c) { return cats[c.key]; }).map(function (c) { return c.name.toLowerCase(); });
@@ -639,7 +620,7 @@
       }).filter(Boolean);
 
       hits.sort(function (a, b) {
-        var rank = { on: 0, soon: 1, gap: 2 };
+        var rank = { on: 0, soon: 1 };
         return rank[a.s.state] - rank[b.s.state];
       });
 

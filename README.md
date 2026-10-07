@@ -37,8 +37,30 @@ someone types a city or an activity.
   photos from one campus must not be used to represent another, so the set needs
   confirming before launch. The three open campus cards deliberately carry their
   activity names rather than a photo for that reason.
-- **The content has known gaps**, flagged on the page itself in the amber notes:
-  two of the seven categories have no activities, two campuses have no confirmed
-  status, and activity names are inconsistent at source, for example Soccer at
-  Gurgaon against Football everywhere else. The finder works around the last one
-  with an alias list; GEMS should fix it in the data.
+## Held back from the page, on purpose
+
+The page shows parents only what GEMS has confirmed. These gaps are real and
+still need answering, but they are recorded here rather than printed on a page a
+parent reads.
+
+- **Two of the seven categories are missing**: Creativity & Design and
+  Future-Focused Opportunities have no activity against them in any campus list.
+  `liveCategories()` in `src/data.js` filters out any category with nothing in
+  it, so each one reappears by itself the day a school lists something for it.
+  Note this is a deliberate departure from the approved website copy, which
+  describes all seven.
+- **Two campuses are withheld**: GEMS Millennium Kochi and Raipur both have live
+  websites and appear in no GEMS document, neither running nor coming soon. They
+  sit in the `UNCONFIRMED` list in `src/data.js`, which nothing renders. A parent
+  searching Raipur therefore gets the "no campus matches yet" card, which invites
+  them to register interest. Move them into `SCHOOLS` with the right state as
+  soon as GEMS says which group they belong in.
+- **Activity names are inconsistent at source**: Soccer at Gurgaon against
+  Football everywhere else, and both Basket Ball and Basketball. The finder
+  papers over this with `ALIASES`; GEMS should fix it in the data.
+- **Still unanswered by any document**: grades and ages, days and timings, fees,
+  and the registration route and deadlines. Those are campus-page content, and
+  the campus pages cannot ship without them.
+- **Category assignment is a reading, not GEMS's**: the modules document gives no
+  category per activity, so `cat` in `src/data.js` is an editorial call. Chess
+  under Life Skills is the one most worth a second opinion.

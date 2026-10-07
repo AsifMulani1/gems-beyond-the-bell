@@ -135,7 +135,9 @@ window.BTB = (function () {
       diff: 'Preparing children for a future shaped by technology through practical thinking and application.' }
   };
 
-  /* state: 'on' running now, 'soon' planned, 'gap' not confirmed by GEMS. */
+  /* state: 'on' running now, 'soon' planned. Nothing here is unconfirmed: a
+     campus a parent can see has to be one GEMS has placed in one of the two
+     groups. See UNCONFIRMED below. */
   var SCHOOLS = [
     { city: 'Kochi', brand: 'GEMS Modern Academy', state: 'on',
       acts: ['Basketball', 'Football', 'Badminton', 'Chess', 'Trinity Programme',
@@ -154,9 +156,16 @@ window.BTB = (function () {
       acts: ['Martial Arts', 'Football', 'Skating', 'Music', 'Dance'] },
     { city: 'Vikhroli, Mumbai', brand: 'GEMS Millennium School', state: 'soon', acts: [] },
     { city: 'Kalyan, Mumbai', brand: 'GEMS Millennium School', state: 'soon', acts: [] },
-    { city: 'Coimbatore', brand: 'GEMS Modern Academy', state: 'soon', acts: [] },
-    { city: 'Kochi', brand: 'GEMS Millennium School', state: 'gap', acts: [] },
-    { city: 'Raipur', brand: 'GEMS Millennium School', state: 'gap', acts: [] }
+    { city: 'Coimbatore', brand: 'GEMS Modern Academy', state: 'soon', acts: [] }
+  ];
+
+  /* Both have live campus websites, and both are absent from every GEMS
+     document: neither listed as running nor as coming soon. Until someone at
+     GEMS places them, they stay off the page rather than being shown to a
+     parent as a campus with an unknown status. Nothing renders this list. */
+  var UNCONFIRMED = [
+    { city: 'Kochi', brand: 'GEMS Millennium School' },
+    { city: 'Raipur', brand: 'GEMS Millennium School' }
   ];
 
   /* GEMS names the same activity two ways across campuses. A parent should not
@@ -202,10 +211,19 @@ window.BTB = (function () {
     return out;
   }
 
+  /* Only the categories a campus actually offers. A category with nothing
+     behind it is a promise the network cannot keep yet, so the page leaves it
+     out; it reappears on its own the day a school lists an activity for it. */
+  function liveCategories() {
+    return CATEGORIES.filter(function (c) { return byCategory(c.key).length > 0; });
+  }
+
   return {
     CATEGORIES: CATEGORIES,
+    liveCategories: liveCategories,
     ACTIVITIES: ACTIVITIES,
     SCHOOLS: SCHOOLS,
+    UNCONFIRMED: UNCONFIRMED,
     ALIASES: ALIASES,
     SAME: SAME,
     distinctPursuits: distinctPursuits,
