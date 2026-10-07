@@ -15,7 +15,7 @@ window.BTB = (function () {
      enquiry, from every campus, under that one campus's form.
      Empty means the form shows the campaign phone numbers instead of pretending
      to send. Paste the key here and it goes live. */
-  var ENQUIRY_KEY = '';
+  var ENQUIRY_KEY = 'eb7021c8-ffd6-4d45-9f43-1abbaef194b1';
 
   var CATEGORIES = [
     { key: 'sport', name: 'Sports',

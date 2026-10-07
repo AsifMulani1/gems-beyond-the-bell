@@ -702,6 +702,7 @@
     <label>Activity
       <select id="eqActivity" name="activity"></select>
     </label>
+    <input type="checkbox" name="botcheck" id="eqBot" style="display:none" tabindex="-1" autocomplete="off">
     <label class="wide">Anything else
       <textarea id="eqMessage" name="message" rows="2"></textarea>
     </label>
@@ -1051,6 +1052,7 @@
         campus: eqCampus.value || 'Not sure yet',
         activity: eqActivity.value || 'Not sure yet',
         message: document.getElementById('eqMessage').value,
+        botcheck: document.getElementById('eqBot').checked,
         page: location.pathname
       };
       fetch('https://api.web3forms.com/submit', {
