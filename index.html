@@ -250,6 +250,8 @@
   .res__act b { font-family: var(--display); font-size: 16px; }
   .res__act p { margin: 3px 0 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
   .res__act em { font-style: normal; color: var(--note); }
+  .res__strand { margin-top: 8px !important; }
+  .res__strand b { font-family: var(--display); font-size: 14px; color: var(--ink); }
   .res__planned { border-left-color: var(--mute); }
   .res__foot { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; border-top: 2px solid #eceef3; padding-top: 14px; }
   .res__empty { margin-top: 22px; padding: 28px; max-width: 640px; }
@@ -531,10 +533,8 @@
          wrote the copy for each, so the card shows the strand it belongs to. */
       var strand = '';
       acts.forEach(function (a) {
-        var meta = D.ACTIVITIES[a];
-        if (meta && meta.byCat && meta.byCat[c.key]) {
-          strand = '<p class="cat__strand"><b>' + a + '</b> ' + meta.byCat[c.key].cover + '</p>';
-        }
+        var st = D.strandFor(a, c.key);
+        if (st) strand = '<p class="cat__strand"><b>' + a + '</b> ' + st.cover + '</p>';
       });
       return '<article class="cat box' + span + '">' +
         '<span class="cat__icon">' + icon(c.key) + '</span>' +
@@ -570,7 +570,9 @@
     function summary(s) {
       if (!s.acts.length) return 'Programme being planned.';
       var cats = {};
-      s.acts.forEach(function (a) { if (D.ACTIVITIES[a]) cats[D.ACTIVITIES[a].cat] = true; });
+      s.acts.forEach(function (a) {
+        D.categoriesOf(a).forEach(function (k) { cats[k] = true; });
+      });
       var names = D.CATEGORIES.filter(function (c) { return cats[c.key]; }).map(function (c) { return c.name.toLowerCase(); });
       return s.acts.length + ' activities across ' + names.join(', ') + '.';
     }
@@ -626,8 +628,7 @@
         var where = s.city + ' ' + s.brand;
         var place = tests.some(function (re) { return re.test(where); });
         var acts = s.acts.filter(function (a) {
-          var meta = D.ACTIVITIES[a] || {};
-          var hay = a + ' ' + (meta.cover || '');
+          var hay = D.searchText(a);
           return tests.some(function (re) { return re.test(hay); });
         });
         return (place || acts.length) ? { s: s, acts: acts } : null;
@@ -655,10 +656,18 @@
           ? h.acts.map(function (a) {
               var meta = D.ACTIVITIES[a] || {};
               var planned = h.s.state !== 'on';
+              var head = '<b>' + a + (planned ? ' <em>(planned)</em>' : '') + '</b>';
+              /* A programme with strands shows each one as GEMS wrote it,
+                 under the brand name, rather than as one merged paragraph. */
+              var body = meta.strands
+                ? meta.strands.map(function (st) {
+                    return '<p class="res__strand"><b>' + st.label + '</b> ' + st.cover + '</p>' +
+                      '<p><em>' + st.diff + '</em></p>';
+                  }).join('')
+                : '<p>' + (meta.cover || '') + '</p>' +
+                  (meta.diff ? '<p><em>' + meta.diff + '</em></p>' : '');
               return '<div class="res__act' + (planned ? ' res__planned' : '') + '">' +
-                '<b>' + a + (planned ? ' <em>(planned)</em>' : '') + '</b>' +
-                '<p>' + (meta.cover || '') + '</p>' +
-                (meta.diff ? '<p><em>' + meta.diff + '</em></p>' : '') + '</div>';
+                head + body + '</div>';
             }).join('')
           : '<div class="res__act res__planned"><p>' + summary(h.s) + '</p></div>';
 

@@ -123,20 +123,23 @@ window.BTB = (function () {
        reach eight activities at Kochi; the name is a single brand and is always
        written in full, so it is one entry here and sits in the three categories
        its own strands cover. */
+    /* One brand, three strands, and GEMS wrote separate content for each. The
+       name is always written in full; the strand says which content applies.
+       There is deliberately no merged description: stitching the three into one
+       sentence would be our words, not GEMS's. */
     'Bower School of Entrepreneurship': {
-      cats: ['ent', 'life', 'tech'],
-      /* GEMS supplies different content for this one programme depending on the
-         category it is read under, so each category shows its own strand. */
-      byCat: {
-        life: { cover: 'Financial awareness, understanding money and making everyday decisions with confidence.',
-                diff: 'Building practical money sense and sound decision-making from an early age.' },
-        ent:  { cover: 'Idea generation, problem-solving and turning ideas into action.',
-                diff: 'Bringing creativity and practical thinking together to build and test ideas.' },
-        tech: { cover: 'AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
-                diff: 'Preparing children for a future shaped by technology through practical thinking and application.' }
-      },
-      cover: 'Financial awareness, understanding money and making everyday decisions with confidence. Idea generation, problem-solving and turning ideas into action. AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
-      diff: 'Building practical money sense and sound decision-making from an early age, bringing creativity and practical thinking together to build and test ideas, and preparing children for a future shaped by technology.' }
+      cats: ['life', 'ent', 'tech'],
+      strands: [
+        { cat: 'life', label: 'Financial literacy',
+          cover: 'Financial awareness, understanding money and making everyday decisions with confidence.',
+          diff: 'Building practical money sense and sound decision-making from an early age.' },
+        { cat: 'ent', label: 'Entrepreneurship',
+          cover: 'Idea generation, problem-solving and turning ideas into action.',
+          diff: 'Bringing creativity and practical thinking together to build and test ideas.' },
+        { cat: 'tech', label: 'Artificial intelligence',
+          cover: 'AI awareness: understanding how artificial intelligence works and where it shows up in daily life.',
+          diff: 'Preparing children for a future shaped by technology through practical thinking and application.' }
+      ] }
   };
 
   /* state: 'on' running now, 'soon' planned. Nothing here is unconfirmed: a
@@ -201,14 +204,33 @@ window.BTB = (function () {
     return SCHOOLS.reduce(function (n, s) { return n + s.acts.length; }, 0);
   }
 
+  /* The text search has to see a strand's content, not just the activity name. */
+  function searchText(name) {
+    var meta = ACTIVITIES[name] || {};
+    var bits = [name, meta.cover || ''];
+    (meta.strands || []).forEach(function (s) { bits.push(s.label, s.cover); });
+    return bits.join(' ');
+  }
+
+  function strandFor(name, key) {
+    var meta = ACTIVITIES[name] || {};
+    var hit = null;
+    (meta.strands || []).forEach(function (s) { if (s.cat === key) hit = s; });
+    return hit;
+  }
+
+  function categoriesOf(name) {
+    var meta = ACTIVITIES[name] || {};
+    return meta.cats || (meta.cat ? [meta.cat] : []);
+  }
+
   function byCategory(key) {
     var seen = {}, out = [];
     SCHOOLS.forEach(function (s) {
       s.acts.forEach(function (a) {
         var meta = ACTIVITIES[a];
         if (!meta) return;
-        var cats = meta.cats || [meta.cat];
-        if (cats.indexOf(key) === -1) return;
+        if (categoriesOf(a).indexOf(key) === -1) return;
         var label = SAME[a] || a;
         if (!seen[label]) { seen[label] = true; out.push(label); }
       });
@@ -226,6 +248,9 @@ window.BTB = (function () {
   return {
     CATEGORIES: CATEGORIES,
     liveCategories: liveCategories,
+    searchText: searchText,
+    strandFor: strandFor,
+    categoriesOf: categoriesOf,
     ACTIVITIES: ACTIVITIES,
     SCHOOLS: SCHOOLS,
     UNCONFIRMED: UNCONFIRMED,
