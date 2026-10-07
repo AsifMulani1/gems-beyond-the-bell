@@ -113,9 +113,12 @@ def build(live: bool) -> int:
         + "\n</body>\n</html>\n"
     )
 
-    out = ROOT / "dist" if live else ROOT
+    # Cloudflare serves the asset directory from the root of the zone, so the
+    # files have to sit under the path they are served at or every relative
+    # asset 404s. The campus sites nest the same way.
+    out = ROOT / "dist" / "beyond-the-bell" if live else ROOT
     if live:
-        shutil.rmtree(out, ignore_errors=True)
+        shutil.rmtree(ROOT / "dist", ignore_errors=True)
         (out / "img").mkdir(parents=True)
         for f in sorted((ROOT / "img").glob("*")):
             shutil.copyfile(f, out / "img" / f.name)
