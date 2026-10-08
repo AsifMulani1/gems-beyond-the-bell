@@ -1,5 +1,10 @@
 <!-- The gemseducationindia.com header and footer, rebuilt self-contained.
 
+     Every href here must be a route the brand site actually serves. They are
+     not guessable: "We Are GEMS" is /education-research and the schools page is
+     /find-a-school. `python3 check_links.py` walks every link on the built page
+     against the live site; run it before any deploy.
+
      The live site is Tailwind with hashed asset names, so linking its
      stylesheet would break the moment the brand site is rebuilt and the hash
      changes. These are the same elements written as plain CSS instead: same
@@ -111,7 +116,7 @@
         </div></div>
       </div>
       <div><a class="on" href="/beyond-the-bell">Beyond the Bell</a></div>
-      <div><a href="/we-are-gems">We Are GEMS</a></div>
+      <div><a href="/education-research">We Are GEMS</a></div>
       <div><a href="/campus-connect">Campus Connect</a></div>
       <div><a href="/contact-us">Contact</a></div>
     </nav>
@@ -125,9 +130,9 @@
     <a class="sub" href="/about-gems-education">About GEMS Education</a>
     <a class="sub" href="/leadership-team">Leadership Team</a>
     <a class="sub" href="/life-at-gems-education">Life at GEMS Education</a>
-    <a href="/#schools-list">Our Schools</a>
+    <a href="/find-a-school">Our Schools</a>
     <a href="/beyond-the-bell">Beyond the Bell</a>
-    <a href="/we-are-gems">We Are GEMS</a>
+    <a href="/education-research">We Are GEMS</a>
     <a href="/campus-connect">Campus Connect</a>
     <a href="/contact-us">Contact</a>
     <a href="/admission">Admission Waitlist</a>
